@@ -1,12 +1,79 @@
+// TryLoaded.cpp : Defines the entry point for the console application.
+//
+
 #include "stdafx.h"
 #include <stdlib.h>
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
 #include <glut.h>
+#include "TextureBuilder.h"
 using namespace std;
 
+GLuint elephant;
+float elephantrot;
+char ch='1';
+
 bool hasObstacle(int x, int z);
+
+
+void loadObj(char *fname)
+{
+FILE *fp;
+int read;
+GLfloat x, y, z;
+char ch;
+elephant=glGenLists(1);
+fp=fopen(fname,"r");
+if (!fp) 
+    {
+        printf("can't open file %s\n", fname);
+	  exit(1);
+    }
+glPointSize(2.0);
+glNewList(elephant, GL_COMPILE);
+{
+glPushMatrix();
+glBegin(GL_POINTS);
+while(!(feof(fp)))
+ {
+  read=fscanf(fp,"%c %f %f %f",&ch,&x,&y,&z);
+  if(read==4&&ch=='v')
+  {
+   glVertex3f(x,y,z);
+  }
+ }
+glEnd();
+}
+glPopMatrix();
+glEndList();
+fclose(fp);
+}
+
+//void reshape(int w,int h)
+//{    
+//	glViewport(0,0,w,h);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//    gluPerspective (60, (GLfloat)w / (GLfloat)h, 0.1, 1000.0);
+//	//glOrtho(-25,25,-2,2,0.1,100);	
+//	glMatrixMode(GL_MODELVIEW);
+//}
+
+void drawCharacter()
+{
+ 	glPushMatrix();
+ 	glTranslated(-1,-5.00,20);
+ 	glColor3d(0.3,0.1,0.9);
+ 	//glScalef(0.1,0.1,0.1);
+	glScaled(0.2,0.2,0.2);
+ 	glRotated(elephantrot,0,1,0);
+ 	glCallList(elephant);
+ 	glPopMatrix();
+ 	/*elephantrot=elephantrot+0.6;
+ 	if(elephantrot>360)elephantrot=elephantrot-360;*/
+}
+
 
 
 void color(int c){
@@ -42,16 +109,39 @@ void cube(int x, int y, int z){
 	glPopMatrix();
 }
 
+void drawObstacles(int x, int y, int z) {
+	glPushMatrix();
+	glColor3f(1.0f,1.0f,1.0f);
+	glTranslated(x,y,z);//
+	glRotated(-90,1,0,0);
+	static GLuint eboxTexture = LoadTexture("stop13.ppm", 720, 360, true);
+	GLUquadricObj* esphere = gluNewQuadric();		
+	gluQuadricTexture(esphere, true);
+	gluQuadricNormals(esphere, GLU_SMOOTH);
+	glEnable(GL_TEXTURE_2D);		
+	glBindTexture(GL_TEXTURE_2D, eboxTexture);
+	glEnable(GL_CULL_FACE);
+	//gluCylinder(esphere,0.5, 0.5, 1,50,50);
+	gluSphere(esphere, 0.5, 100, 100);
+	gluDeleteQuadric(esphere);
+	glPopMatrix();
+
+}
+
 void drawWalkway(void) {
 	for(int x=-11;x<12;x++)
 		for(int z=29;z<120;z++)
 		{
 			cube(x, -10, z);
 			if (hasObstacle(x,z)) {
-				cube(x, -9, z);
+				/*cube(x, -9, z);
 				cube(x, -8, z);
 				cube(x, -7, z);
-				cube(x, -6, z);
+				cube(x, -6, z);*/
+				drawObstacles(x,-9,z);
+				drawObstacles(x,-8,z);
+				drawObstacles(x,-7,z);
+				drawObstacles(x,-6,z);
 			}
 		}
 }
@@ -83,6 +173,7 @@ void display(void)
 
 	drawWalkway();
 	drawEndWall();
+	drawCharacter();
 
 	glFlush();
 	glutSwapBuffers();
@@ -100,6 +191,8 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(200, 150);
 	glutCreateWindow("METian Rush");
 	glutDisplayFunc(display);
+	//glutReshapeFunc(reshape);
+	loadObj("al.obj");
 	//glutKeyboardFunc(MyKeyboard_shary);
 	//glutSpecialFunc(MySpecialKeyboard_shary);
 	glShadeModel(GL_SMOOTH);
