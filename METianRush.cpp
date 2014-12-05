@@ -26,10 +26,10 @@ char ch;
 elephant=glGenLists(1);
 fp=fopen(fname,"r");
 if (!fp) 
-    {
-        printf("can't open file %s\n", fname);
+	{
+		printf("can't open file %s\n", fname);
 	  exit(1);
-    }
+	}
 glPointSize(2.0);
 glNewList(elephant, GL_COMPILE);
 {
@@ -62,16 +62,16 @@ fclose(fp);
 
 void drawCharacter()
 {
- 	glPushMatrix();
- 	glTranslated(-1,-5.00,20);
- 	glColor3d(0.3,0.1,0.9);
- 	//glScalef(0.1,0.1,0.1);
+	glPushMatrix();
+	glTranslated(-1,-5.00,20);
+	glColor3d(0.3,0.1,0.9);
+	//glScalef(0.1,0.1,0.1);
 	glScaled(0.2,0.2,0.2);
- 	glRotated(elephantrot,0,1,0);
- 	glCallList(elephant);
- 	glPopMatrix();
- 	/*elephantrot=elephantrot+0.6;
- 	if(elephantrot>360)elephantrot=elephantrot-360;*/
+	glRotated(elephantrot,0,1,0);
+	glCallList(elephant);
+	glPopMatrix();
+	/*elephantrot=elephantrot+0.6;
+	if(elephantrot>360)elephantrot=elephantrot-360;*/
 }
 
 
