@@ -13,41 +13,41 @@ using namespace std;
 GLuint elephant;
 float elephantrot;
 char ch='1';
+GLuint grassTexture;
 
 bool hasObstacle(int x, int z);
 
-
 void loadObj(char *fname)
 {
-FILE *fp;
-int read;
-GLfloat x, y, z;
-char ch;
-elephant=glGenLists(1);
-fp=fopen(fname,"r");
-if (!fp) 
+	FILE *fp;
+	int read;
+	GLfloat x, y, z;
+	char ch;
+	elephant=glGenLists(1);
+	fp=fopen(fname,"r");
+	if (!fp) 
 	{
 		printf("can't open file %s\n", fname);
-	  exit(1);
+		exit(1);
 	}
-glPointSize(2.0);
-glNewList(elephant, GL_COMPILE);
-{
-glPushMatrix();
-glBegin(GL_POINTS);
-while(!(feof(fp)))
- {
-  read=fscanf(fp,"%c %f %f %f",&ch,&x,&y,&z);
-  if(read==4&&ch=='v')
-  {
-   glVertex3f(x,y,z);
-  }
- }
-glEnd();
-}
-glPopMatrix();
-glEndList();
-fclose(fp);
+	glPointSize(2.0);
+	glNewList(elephant, GL_COMPILE);
+	{
+		glPushMatrix();
+		glBegin(GL_POINTS);
+		while(!(feof(fp)))
+		{
+			read=fscanf(fp,"%c %f %f %f",&ch,&x,&y,&z);
+			if(read==4&&ch=='v')
+			{
+				glVertex3f(x,y,z);
+			}
+		}
+		glEnd();
+	}
+	glPopMatrix();
+	glEndList();
+	fclose(fp);
 }
 
 //void reshape(int w,int h)
@@ -106,6 +106,23 @@ void cube(int x, int y, int z){
 	glPushMatrix();
 	glTranslated(x,y,z);
 	glutSolidCube(1);
+	glPopMatrix();
+}
+
+void cube_textured(int x, int y, int z){
+	glPushMatrix();
+	glColor3f(1.0f,1.0f,1.0f);
+	glTranslated(x,y,z);
+	static GLuint cubeTexture = LoadTexture("grass.ppm", 720, 360, true);
+	GLUquadricObj* ecube = gluNewQuadric();		
+	gluQuadricTexture(ecube, true);
+	gluQuadricNormals(ecube, GLU_SMOOTH);
+	glEnable(GL_TEXTURE_2D);		
+	glBindTexture(GL_TEXTURE_2D, cubeTexture);
+	glEnable(GL_CULL_FACE);
+	//glutSolidCube(1);
+	gluSphere(ecube, 0.5, 100, 100);
+	gluDeleteQuadric(ecube);
 	glPopMatrix();
 }
 
@@ -170,7 +187,6 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(0,0,0,0,0,1,0,1,0);
 	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-
 	drawWalkway();
 	drawEndWall();
 	drawCharacter();
