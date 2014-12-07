@@ -15,3 +15,4 @@ Amir: the ground path with the obstacles - DONE
 
 
 Remaining: textures (get them to work properly)
+			lightning: spotlight effect

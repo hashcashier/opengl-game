@@ -113,7 +113,7 @@ void cube_textured(int x, int y, int z){
 	glPushMatrix();
 	glColor3f(1.0f,1.0f,1.0f);
 	glTranslated(x,y,z);
-	static GLuint cubeTexture = LoadTexture("grass.ppm", 720, 360, true);
+	static GLuint cubeTexture = LoadTexture("Earth.ppm", 720, 360, false);
 	GLUquadricObj* ecube = gluNewQuadric();		
 	gluQuadricTexture(ecube, true);
 	gluQuadricNormals(ecube, GLU_SMOOTH);
@@ -147,17 +147,17 @@ void drawObstacles(int x, int y, int z) {
 
 void drawWalkway(void) {
 	for(int x=-11;x<12;x++)
-		for(int z=29;z<120;z++)
+		for(int z=29;z<240;z++)
 		{
-			cube(x, -10, z);
+			cube_textured(x, -10, z);
 			if (hasObstacle(x,z)) {
 				/*cube(x, -9, z);
 				cube(x, -8, z);
 				cube(x, -7, z);
 				cube(x, -6, z);*/
-				drawObstacles(x,-9,z);
-				drawObstacles(x,-8,z);
-				drawObstacles(x,-7,z);
+				//drawObstacles(x,-9,z);
+				//drawObstacles(x,-8,z);
+				//drawObstacles(x,-7,z);
 				drawObstacles(x,-6,z);
 			}
 		}
@@ -166,12 +166,12 @@ void drawWalkway(void) {
 void drawEndWall(void) {
 	for (int x=-11;x<12;x++) {
 		for (int y=-9;y<0;y++){
-			cube(x,y,120);
+			cube(x,y,240);
 		}
 	}
 	for (int y=0;y<=11;y++) {
 		for (int x=y-11;x+y<12;x++) {
-			cube(x,y,120);
+			cube(x,y,240);
 		}
 	}
 }
