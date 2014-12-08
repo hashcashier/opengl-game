@@ -8,7 +8,49 @@
 #include "GameManager.h"
 
 GameManager::GameManager() {
-	// TODO Auto-generated constructor stub
-	GAME_STATE = 0;
+	GAME_STATE = GAME_ROUND = PLAYER_SCORE = PLAYER_ENERGY = 0;
 }
 
+void GameManager::startGame() {
+	GAME_STATE = 2;
+}
+
+void GameManager::pauseGame() {
+	GAME_STATE = 1;
+}
+
+void GameManager::endGame() {
+	GAME_STATE = 3;
+}
+
+int GameManager::getState() {
+	return GAME_STATE;
+}
+
+void GameManager::dissipateEnergy() {
+	// TODO: calculate new energy
+}
+
+void GameManager::addEnergy(int amount) {
+	PLAYER_ENERGY += amount;
+}
+
+int GameManager::getEnergy() {
+	return PLAYER_ENERGY;
+}
+
+void GameManager::addScore(int amount) {
+	PLAYER_SCORE += amount;
+}
+
+int GameManager::getScore() {
+	return PLAYER_SCORE;
+}
+
+void GameManager::nextRound() {
+	GAME_ROUND++;
+}
+
+int GameManager::getRound() {
+	return GAME_ROUND;
+}
