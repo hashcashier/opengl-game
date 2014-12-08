@@ -7,6 +7,8 @@
 #include "TextureBuilder.h"
 using namespace std;
 
+extern void displayFunction();
+
 GLuint elephant;
 float elephantrot;
 char ch='1';
@@ -172,25 +174,6 @@ void drawEndWall(void) {
 	}
 }
 
-void display(void)
-{
-
-	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45, 1, 0.1, 10000);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(0,0,0,0,0,1,0,1,0);
-	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-	drawWalkway();
-	drawEndWall();
-	drawCharacter();
-
-	glFlush();
-	glutSwapBuffers();
-}
-
 bool hasObstacle(int x, int z) {
 	return ((x+z)%17==0)&&(x%4==0);
 }
@@ -202,7 +185,7 @@ int main(int argc, char** argv)
 	glutInitWindowSize(800,600);
 	glutInitWindowPosition(200, 150);
 	glutCreateWindow("METian Rush");
-	glutDisplayFunc(display);
+	glutDisplayFunc(displayFunction);
 	//glutReshapeFunc(reshape);
 	//glutKeyboardFunc(MyKeyboard_shary);
 	//glutSpecialFunc(MySpecialKeyboard_shary);
