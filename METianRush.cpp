@@ -1,12 +1,9 @@
 // TryLoaded.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-#include <stdlib.h>
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
-#include <glut.h>
+
+#include "platformIndependentHeader.h"
+
 #include "TextureBuilder.h"
 using namespace std;
 
@@ -17,17 +14,17 @@ GLuint grassTexture;
 
 bool hasObstacle(int x, int z);
 
-void loadObj(char *fname)
+void loadObj(string fname)
 {
 	FILE *fp;
 	int read;
 	GLfloat x, y, z;
 	char ch;
 	elephant=glGenLists(1);
-	fp=fopen(fname,"r");
+	fp=fopen(fname.c_str(),"r");
 	if (!fp) 
 	{
-		printf("can't open file %s\n", fname);
+		printf("can't open file %s\n", fname.c_str());
 		exit(1);
 	}
 	glPointSize(2.0);

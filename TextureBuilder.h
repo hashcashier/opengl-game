@@ -1,18 +1,12 @@
 #ifndef TEXTURE_BUILDER
 #define TEXTURE_BUILDER
 
-
-
-#include <windows.h>
-#include <tchar.h>
-#include <string>
-#include <stdio.h>
-#include <glut.h>
+#include "platformIndependentHeader.h"
 
 GLuint LoadTexture( const char * filename, int width, int height, int wrap )
 {
   GLuint texture;
-  BYTE * data;
+  char * data;
   FILE * file;
   
   // open texture data
@@ -20,7 +14,7 @@ GLuint LoadTexture( const char * filename, int width, int height, int wrap )
   if ( file == NULL ) return 0;
 
   // allocate buffer 
-  data = (BYTE*) malloc( width * height * 3 );
+  data = (char*) malloc( width * height * 3 );
 
   // read texture data
   fread( data, 1, width * height * 3, file );
