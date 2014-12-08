@@ -71,8 +71,6 @@ void drawCharacter()
 	if(elephantrot>360)elephantrot=elephantrot-360;*/
 }
 
-
-
 void color(int c){
 	if(c==1){
 		glColor3f(0.75,0.75,0.75);
@@ -89,6 +87,7 @@ void color(int c){
 		glColor3f(0,0,0.4);
 	}
 }
+
 void cube(int x, int y, int z){
 	if(z%2==0)
 		if(x%2==0)
@@ -205,7 +204,6 @@ int main(int argc, char** argv)
 	glutCreateWindow("METian Rush");
 	glutDisplayFunc(display);
 	//glutReshapeFunc(reshape);
-	loadObj("al.obj");
 	//glutKeyboardFunc(MyKeyboard_shary);
 	//glutSpecialFunc(MySpecialKeyboard_shary);
 	glShadeModel(GL_SMOOTH);
@@ -213,5 +211,8 @@ int main(int argc, char** argv)
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
 	glClearColor(1.0,1.0,1.0,0.0);
+	glEnable(GL_TEXTURE_2D);
+
+	loadObj("al.obj");
 	glutMainLoop();
 }
