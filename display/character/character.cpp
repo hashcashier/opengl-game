@@ -7,6 +7,10 @@
 
 #include "character.h"
 
+GLuint elephant;
+float elephantrot;
+char ch='1';
+GLuint grassTexture;
 
 void loadObj(string fname)
 {

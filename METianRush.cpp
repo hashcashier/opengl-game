@@ -8,12 +8,7 @@
 using namespace std;
 
 extern void displayFunction();
-
-GLuint elephant;
-float elephantrot;
-char ch='1';
-GLuint grassTexture;
-
+extern void loadObj(string fname);
 
 //void reshape(int w,int h)
 //{    
