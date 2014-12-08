@@ -9,7 +9,10 @@
 #define PLATFORMINDEPENDENTHEADER_H_
 
 #include "stdafx.h"
-#include <bits/stdc++.h>
 #include <glut.h>
+#include <vector>
+#include <string>
+#include <cstdio>
+#include <cstdlib>
 
 #endif /* PLATFORMINDEPENDENTHEADER_H_ */
