@@ -42,9 +42,10 @@ void Cube::draw(int x, int y, int z){
 }
 
 void Cube::drawTextured(int x, int y, int z){
-	static GLuint cubeTexture = TextureLoader::loadTexture("Earth.ppm", 720, 360, false);
+	static GLuint cubeTexture = TextureLoader::loadTexture("grassTexture.ppm", 444, 280, false);
 
 	glPushMatrix();
+
 	glColor3f(1.0f,1.0f,1.0f);
 	glTranslated(x,y,z);
 	GLUquadricObj* ecube = gluNewQuadric();
@@ -53,8 +54,9 @@ void Cube::drawTextured(int x, int y, int z){
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, cubeTexture);
 	glEnable(GL_CULL_FACE);
-	//glutSolidCube(1);
-	gluSphere(ecube, 0.5, 100, 100);
+	glutSolidCube(1);
+//	gluSphere(ecube, 0.5, 100, 100);
 	gluDeleteQuadric(ecube);
+
 	glPopMatrix();
 }

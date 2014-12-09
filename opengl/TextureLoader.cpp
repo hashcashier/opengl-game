@@ -34,6 +34,8 @@ GLuint TextureLoader::loadTexture(const char * filename, int width, int height,
 	// select our current texture
 	glBindTexture(GL_TEXTURE_2D, texture);
 
+	//glPixelStorei();
+
 	// select modulate to mix texture with color for shading
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
@@ -51,7 +53,7 @@ GLuint TextureLoader::loadTexture(const char * filename, int width, int height,
 			wrap ? GL_REPEAT : GL_CLAMP);
 
 	// build our texture MIP maps
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE,
+	gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE,
 			data);
 
 	// free buffer
