@@ -13,6 +13,7 @@
 #include "camera/Camera.h"
 #include "HUD.h"
 #include "../opengl/ObjectLoader.h"
+#include "light/Spotlight.h"
 
 using namespace std;
 

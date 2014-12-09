@@ -30,12 +30,10 @@ void Character::draw() {
 
 	glPushMatrix();
 	glTranslated(x,y,z);
-//	glTranslated(-1,-5.00,20);
 	glColor3d(0.3,0.1,0.9);
 	//glScalef(0.1,0.1,0.1);
 	glScaled(0.2,0.2,0.2);
 	glRotated(rotation,0,1,0);
-//	cerr << "Character: " << object << endl;
 	glCallList(object);
 	glPopMatrix();
 }

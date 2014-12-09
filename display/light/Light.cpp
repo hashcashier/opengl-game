@@ -7,12 +7,21 @@
 
 #include "Light.h"
 
-set<GLuint> Light::enabledLights;
+set<int> Light::enabledLights;
 GLuint lights[] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4, GL_LIGHT5, GL_LIGHT6, GL_LIGHT7};
 vector<GLuint> Light::allLights(lights, lights+8);
 
+void Light::reserveLight(int i) {
+	enabledLights.insert(i);
+}
+
+void Light::freeLight(int i) {
+	enabledLights.erase(i);
+}
+
 void Light::enableLight(int i) {
 	glEnable(allLights[i]);
+	reserveLight(i);
 }
 
 void Light::disableLight(int i) {
@@ -27,3 +36,17 @@ void Light::disableLighting() {
 	glDisable(GL_LIGHTING);
 }
 
+bool Light::enabled(int i) {
+	return enabledLights.count(i);
+}
+
+int Light::getAvailable() {
+	for(int i = 0; i < allLights.size(); i++)
+		if(enabledLights.count(i) == 0)
+			return i;
+	return -1;
+}
+
+GLuint Light::getLight(int i) {
+	return allLights[i];
+}

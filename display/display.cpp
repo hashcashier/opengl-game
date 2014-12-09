@@ -9,11 +9,15 @@
 
 void Display::displayFunction() {
 	Camera::setupCamera();
-
+	static Spotlight spotlight = Spotlight();
+	spotlight.enable();
+	GLfloat pos[] = {Character::getX(), Character::getY(), Character::getZ(), 1};
+	spotlight.setPosition(pos);
 	drawWalkway();
 	drawEndWall();
 
 	Character::draw();
+
 
 	HUD::draw();
 	glFlush();
