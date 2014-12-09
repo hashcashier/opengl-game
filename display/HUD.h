@@ -10,6 +10,7 @@
 
 #include "../platformIndependentHeader.h"
 #include "camera/Camera.h"
+#include "../game/GameManager.h"
 
 using namespace std;
 

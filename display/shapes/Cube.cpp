@@ -7,7 +7,7 @@
 
 #include "Cube.h"
 
-void Cube::color(int c){
+void Cube::color(int c) {
 	if(c==1){
 		glColor3f(0.75,0.75,0.75);
 	}
