@@ -10,6 +10,7 @@
 
 #include "../platformIndependentHeader.h"
 #include "character/character.h"
+#include "camera/Camera.h"
 #include "../opengl/ObjectLoader.h"
 using namespace std;
 

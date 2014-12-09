@@ -9,17 +9,8 @@
 
 void displayFunction() {
 	static Character protagonist = Character(ObjectLoader::loadObject("al.obj"));
-	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45, 1, 0.01, 10000);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(	0,0,0,
-				0,0,1,
-				0,1,0);
+	Camera::setupCamera();
 
-	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 	drawWalkway();
 	drawEndWall();
 
