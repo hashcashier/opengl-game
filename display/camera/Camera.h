@@ -9,6 +9,7 @@
 #define CAMERA_H_
 
 #include "../../platformIndependentHeader.h"
+#include "../../game/character/character.h"
 using namespace std;
 
 class Camera {

@@ -7,8 +7,11 @@
 
 #include "Animator.h"
 
-void animate() {
+void Animator::animate(int value) {
 
-	// TODO animation logic
+	Character::setZ(Character::getZ() + 1);
+
+	if(GameManager::getState() == GameManager::STATE_RUNNING)
+		glutTimerFunc(16, animate, 16);
 	glutPostRedisplay();
 }

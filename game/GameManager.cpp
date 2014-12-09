@@ -25,12 +25,14 @@ void GameManager::startGame() {
 	PLAYER_ENERGY = 100;
 	GAME_STATE = 2;
 	glutPostRedisplay();
+	Animator::animate(0);
 }
 
 void GameManager::resumeGame() {
 	cerr << "Game Resumed" << endl;
 	GAME_STATE = 2;
 	glutPostRedisplay();
+	Animator::animate(0);
 }
 
 void GameManager::pauseGame() {

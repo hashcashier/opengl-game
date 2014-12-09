@@ -9,10 +9,12 @@
 #define ANIMATOR_H_
 
 #include "../platformIndependentHeader.h"
+#include "../game/GameManager.h"
+#include "../game/character/character.h"
 
 class Animator {
 public:
-	static void animate();
+	static void animate(int value);
 };
 
 #endif /* ANIMATOR_H_ */

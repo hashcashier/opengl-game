@@ -9,6 +9,8 @@
 
 GLuint Character::object = 0;
 float Character::rotation = 0;
+const GLfloat Character::iX = -1, Character::iY = -5, Character::iZ = 20;
+GLfloat Character::x = iX, Character::y = iY, Character::z = iZ;
 
 bool Character::hasObjectId() {
 	return object != 0;
@@ -27,7 +29,8 @@ void Character::draw() {
 		setObjectId(ObjectLoader::loadObject("al.obj"));
 
 	glPushMatrix();
-	glTranslated(-1,-5.00,20);
+	glTranslated(x,y,z);
+//	glTranslated(-1,-5.00,20);
 	glColor3d(0.3,0.1,0.9);
 	//glScalef(0.1,0.1,0.1);
 	glScaled(0.2,0.2,0.2);
@@ -37,3 +40,32 @@ void Character::draw() {
 	glPopMatrix();
 }
 
+GLfloat Character::getX() {
+	return x;
+}
+
+void Character::setX(GLfloat X) {
+	x = X;
+}
+
+GLfloat Character::getY() {
+	return y;
+}
+
+void Character::setY(GLfloat Y) {
+	y = Y;
+}
+
+GLfloat Character::getZ() {
+	return z;
+}
+
+void Character::setZ(GLfloat Z) {
+	z = Z;
+}
+
+void Character::resetPosition() {
+	x = iX;
+	y = iY;
+	z = iZ;
+}

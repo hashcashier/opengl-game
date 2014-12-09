@@ -9,6 +9,7 @@
 #define GAMEMANAGER_H_
 
 #include "../platformIndependentHeader.h"
+#include "../display/Animator.h"
 using namespace std;
 
 class GameManager {
