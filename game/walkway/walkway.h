@@ -9,7 +9,7 @@
 #define WALKWAY_H_
 
 #include "../../platformIndependentHeader.h"
-#include "../shapes/Cube.h"
+#include "../../display/shapes/Cube.h"
 #include "../../opengl/TextureLoader.h"
 
 using namespace std;

@@ -9,14 +9,15 @@
 #define DISPLAY_H_
 
 #include "../platformIndependentHeader.h"
-#include "character/character.h"
+#include "../game/character/character.h"
 #include "camera/Camera.h"
+#include "HUD.h"
 #include "../opengl/ObjectLoader.h"
+
 using namespace std;
 
 extern void drawWalkway();
 extern void drawEndWall();
-extern void drawCharacter();
 
 void displayFunction();
 

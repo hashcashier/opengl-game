@@ -7,9 +7,10 @@
 
 #include "GameManager.h"
 
-GameManager::GameManager() {
-	GAME_STATE = GAME_ROUND = PLAYER_SCORE = PLAYER_ENERGY = 0;
-}
+int GameManager::GAME_STATE = 0;
+int GameManager::GAME_ROUND = 0;
+int GameManager::PLAYER_SCORE = 0;
+int GameManager::PLAYER_ENERGY = 0;
 
 void GameManager::startGame() {
 	GAME_STATE = 2;

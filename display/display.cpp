@@ -14,9 +14,9 @@ void displayFunction() {
 	drawWalkway();
 	drawEndWall();
 
-	//	drawCharacter();
 	protagonist.draw();
 
+	HUD::draw();
 	glFlush();
 	glutSwapBuffers();
 }

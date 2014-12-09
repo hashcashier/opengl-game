@@ -20,6 +20,9 @@ class Camera {
 			cameraUp[3];
 public:
 	static void setupCamera();
+	static void enter2DOverlay();
+	static void exit2DOverlay();
+	static void displayText(int x, int y, string text, int r, int g, int b);
 };
 
 #endif /* CAMERA_H_ */
