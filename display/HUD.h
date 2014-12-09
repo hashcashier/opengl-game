@@ -9,6 +9,8 @@
 #define HUD_H_
 
 #include "../platformIndependentHeader.h"
+#include "camera/Camera.h"
+
 using namespace std;
 
 class HUD {

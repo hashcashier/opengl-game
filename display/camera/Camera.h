@@ -22,7 +22,7 @@ public:
 	static void setupCamera();
 	static void enter2DOverlay();
 	static void exit2DOverlay();
-	static void displayText(int x, int y, string text, int r, int g, int b);
+	static void displayText(int x, int y, string text, int r = 0, int g = 0, int b = 0);
 };
 
 #endif /* CAMERA_H_ */

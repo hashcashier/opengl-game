@@ -53,7 +53,7 @@ void Camera::exit2DOverlay() {
 }
 
 
-void Camera::displayText(int x, int y, string text, int r = 0, int g = 0, int b = 0) {
+void Camera::displayText(int x, int y, string text, int r, int g, int b) {
     glColor3f(r, g, b);
     glRasterPos2i(x, y);
     void *font = GLUT_BITMAP_HELVETICA_18;

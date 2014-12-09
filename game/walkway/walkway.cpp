@@ -42,11 +42,12 @@ void drawEndWall() {
 
 
 void drawObstacles(int x, int y, int z) {
+	static GLuint eboxTexture = TextureLoader::loadTexture("stop13.ppm", 720, 360, true);
+
 	glPushMatrix();
 	glColor3f(1.0f,1.0f,1.0f);
 	glTranslated(x,y,z);//
 	glRotated(-90,1,0,0);
-	static GLuint eboxTexture = TextureLoader::loadTexture("stop13.ppm", 720, 360, true);
 	GLUquadricObj* esphere = gluNewQuadric();
 	gluQuadricTexture(esphere, true);
 	gluQuadricNormals(esphere, GLU_SMOOTH);
