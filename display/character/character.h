@@ -6,12 +6,13 @@
  */
 
 #include "../../platformIndependentHeader.h"
+#include "../../opengl/ObjectLoader.h"
 using namespace std;
 
 #ifndef CHARACTER_H_
 #define CHARACTER_H_
 
-void loadObj(string fname);
 void drawCharacter();
+extern GLuint elephant;
 
 #endif /* CHARACTER_H_ */

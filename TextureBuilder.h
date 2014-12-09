@@ -50,7 +50,6 @@ GLuint LoadTexture( const char * filename, int width, int height, int wrap )
   free( data );
 
   return texture;
-
 }
 
 #endif

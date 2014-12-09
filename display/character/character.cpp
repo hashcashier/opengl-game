@@ -7,43 +7,11 @@
 
 #include "character.h"
 
+//GLuint elephant = ObjectLoader::loadObject("al.obj");
 GLuint elephant;
 float elephantrot;
 char ch='1';
 GLuint grassTexture;
-
-void loadObj(string fname)
-{
-	FILE *fp;
-	int read;
-	GLfloat x, y, z;
-	char ch;
-	elephant=glGenLists(1);
-	fp=fopen(fname.c_str(),"r");
-	if (!fp)
-	{
-		printf("can't open file %s\n", fname.c_str());
-		exit(1);
-	}
-	glPointSize(2.0);
-	glNewList(elephant, GL_COMPILE);
-	{
-		glPushMatrix();
-		glBegin(GL_POINTS);
-		while(!(feof(fp)))
-		{
-			read=fscanf(fp,"%c %f %f %f",&ch,&x,&y,&z);
-			if(read==4&&ch=='v')
-			{
-				glVertex3f(x,y,z);
-			}
-		}
-		glEnd();
-	}
-	glPopMatrix();
-	glEndList();
-	fclose(fp);
-}
 
 void drawCharacter()
 {
@@ -53,6 +21,7 @@ void drawCharacter()
 	//glScalef(0.1,0.1,0.1);
 	glScaled(0.2,0.2,0.2);
 	glRotated(elephantrot,0,1,0);
+	cerr << "Character: " << elephant << endl;
 	glCallList(elephant);
 	glPopMatrix();
 	/*elephantrot=elephantrot+0.6;

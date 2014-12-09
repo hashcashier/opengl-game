@@ -5,10 +5,12 @@
 #include "platformIndependentHeader.h"
 
 #include "TextureBuilder.h"
+#include "opengl/ObjectLoader.h"
+extern GLuint elephant;
+
 using namespace std;
 
 extern void displayFunction();
-extern void loadObj(string fname);
 
 //void reshape(int w,int h)
 //{    
@@ -88,7 +90,6 @@ int main(int argc, char** argv)
 	glEnable(GL_COLOR_MATERIAL);
 	glClearColor(1.0,1.0,1.0,0.0);
 	glEnable(GL_TEXTURE_2D);
-
-	loadObj("al.obj");
+	elephant = ObjectLoader::loadObject("al.obj");
 	glutMainLoop();
 }
