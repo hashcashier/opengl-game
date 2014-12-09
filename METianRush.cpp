@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	glutKeyboardFunc(Keyboard::keyboardFunction);
 	glutSpecialFunc(Keyboard::keystrokeFunction);
 
-	glShadeModel(GL_SMOOTH);
+//	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
@@ -31,6 +31,7 @@ int main(int argc, char** argv)
 	Display::clear();
 
 	Light::enableLighting();
+	Light::killAll();
 
 	glutMainLoop();
 }

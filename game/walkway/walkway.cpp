@@ -15,6 +15,7 @@ void drawWalkway() {
 		glPushMatrix();
 		glCallList(walkwayList);
 		glPopMatrix();
+
 	} if(walkwayList == 0) {
 		walkwayList = glGenLists(1);
 		cerr << "New list!" << endl;
@@ -55,7 +56,7 @@ void drawWalkway() {
 				//drawObstacles(x,-9,z);
 				//drawObstacles(x,-8,z);
 				//drawObstacles(x,-7,z);
-				drawObstacles(x, -6, z);
+//				drawObstacles(x, -6, z);
 			}
 		}
 }

@@ -14,11 +14,12 @@ using namespace std;
 
 class Spotlight {
 	int number;
-	GLfloat position[4];
+	GLfloat position[4], direction[4];
 public:
 	Spotlight();
 	void enable();
 	void setPosition(GLfloat pos[]);
+	void setDirection(GLfloat pos[]);
 	void disable();
 };
 

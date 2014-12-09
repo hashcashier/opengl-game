@@ -24,6 +24,7 @@ public:
 	static GLuint getLight(int i);
 	static void reserveLight(int i);
 	static void freeLight(int i);
+	static void killAll();
 };
 
 #endif /* LIGHT_H_ */

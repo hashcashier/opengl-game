@@ -51,7 +51,7 @@ void Cube::drawTextured(int x, int y, int z){
 	GLUquadricObj* ecube = gluNewQuadric();
 	gluQuadricTexture(ecube, true);
 	gluQuadricNormals(ecube, GLU_SMOOTH);
-	glEnable(GL_TEXTURE_2D);
+//	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, cubeTexture);
 	glEnable(GL_CULL_FACE);
 	glutSolidCube(1);

@@ -11,8 +11,13 @@ void Display::displayFunction() {
 	Camera::setupCamera();
 	static Spotlight spotlight = Spotlight();
 	spotlight.enable();
-	GLfloat pos[] = {Character::getX(), Character::getY(), Character::getZ(), 1};
+
+	GLfloat pos[] = {Character::getX(), Character::getY()+5, Character::getZ(), 1};
 	spotlight.setPosition(pos);
+
+	GLfloat dir[] = {Character::getX(), Character::getY(), Character::getZ(), 1};
+	spotlight.setDirection(dir);
+
 	drawWalkway();
 	drawEndWall();
 
