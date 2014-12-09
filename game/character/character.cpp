@@ -9,7 +9,7 @@
 
 GLuint Character::object = 0;
 float Character::rotation = 0;
-const GLfloat Character::iX = -1, Character::iY = -5, Character::iZ = 20;
+const GLfloat Character::iX = 0, Character::iY = -9, Character::iZ = 20;
 GLfloat Character::x = iX, Character::y = iY, Character::z = iZ;
 
 bool Character::hasObjectId() {
@@ -35,7 +35,7 @@ void Character::draw() {
 	//glScalef(0.1,0.1,0.1);
 	glScaled(0.2,0.2,0.2);
 	glRotated(rotation,0,1,0);
-	cerr << "Character: " << object << endl;
+//	cerr << "Character: " << object << endl;
 	glCallList(object);
 	glPopMatrix();
 }
@@ -68,4 +68,16 @@ void Character::resetPosition() {
 	x = iX;
 	y = iY;
 	z = iZ;
+}
+
+void Character::moveForward(GLfloat value) {
+	z += value;
+}
+
+void Character::moveLeft(GLfloat value) {
+	x += value;
+}
+
+void Character::moveRight(GLfloat value) {
+	x -= value;
 }

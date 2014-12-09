@@ -20,10 +20,13 @@ const int GameManager::STATE_OVER = 3;
 
 void GameManager::startGame() {
 	cerr << "Game Started" << endl;
+	if(GAME_STATE == STATE_OVER)
+		PLAYER_SCORE = GAME_ROUND = 0;
 	GAME_ROUND++;
 	PLAYER_SCORE = 0;
 	PLAYER_ENERGY = 100;
 	GAME_STATE = 2;
+	Character::resetPosition();
 	glutPostRedisplay();
 	Animator::animate(0);
 }
@@ -52,7 +55,7 @@ int GameManager::getState() {
 }
 
 void GameManager::dissipateEnergy() {
-	if(PLAYER_ENERGY-- == 0)
+	if(--PLAYER_ENERGY == 0)
 		endGame();
 }
 

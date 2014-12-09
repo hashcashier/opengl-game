@@ -8,8 +8,42 @@
 #include "walkway.h"
 
 GLuint grassTexture;
+GLuint walkwayList = 0;
 
 void drawWalkway() {
+	if(walkwayList != 0) {
+		glPushMatrix();
+		glCallList(walkwayList);
+		glPopMatrix();
+	} if(walkwayList == 0) {
+		walkwayList = glGenLists(1);
+		cerr << "New list!" << endl;
+
+		glNewList(walkwayList, GL_COMPILE);
+		glPushMatrix();
+
+		for (int x = -11; x < 12; x++)
+			for (int z = 20; z < 240; z++) {
+				Cube::draw(x, -10, z);
+				if (hasObstacle(x, z)) {
+					/*cube(x, -9, z);
+					 cube(x, -8, z);
+					 cube(x, -7, z);
+					 cube(x, -6, z);*/
+					//drawObstacles(x,-9,z);
+					//drawObstacles(x,-8,z);
+					//drawObstacles(x,-7,z);
+					drawObstacles(x, -9, z);
+				}
+			}
+		glPopMatrix();
+		glEndList();
+	}
+
+	glPushMatrix();
+	glCallList(walkwayList);
+	glPopMatrix();
+	return;
 	for (int x = -11; x < 12; x++)
 		for (int z = 29; z < 240; z++) {
 			Cube::draw(x, -10, z);

@@ -9,7 +9,8 @@
 
 void Animator::animate(int value) {
 
-	Character::setZ(Character::getZ() + 1);
+	Character::moveForward(0.5);
+	GameManager::dissipateEnergy();
 
 	if(GameManager::getState() == GameManager::STATE_RUNNING)
 		glutTimerFunc(16, animate, 16);

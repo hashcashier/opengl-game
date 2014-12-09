@@ -34,5 +34,15 @@ void Keyboard::keyboardFunction(unsigned char c, int x, int y) {
 }
 
 void Keyboard::keystrokeFunction(int key, int x, int y) {
-
+	int state = GameManager::getState();
+	switch(key) {
+	case(GLUT_KEY_LEFT):
+		if(state == GameManager::STATE_RUNNING)
+			Character::moveLeft(1);
+		break;
+	case(GLUT_KEY_RIGHT):
+		if(state == GameManager::STATE_RUNNING)
+			Character::moveRight(1);
+		break;
+	}
 }

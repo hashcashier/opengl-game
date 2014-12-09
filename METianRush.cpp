@@ -5,28 +5,18 @@
 #include "platformIndependentHeader.h"
 #include "input/Keyboard.h"
 #include "display/display.h"
+#include "display/light/Light.h"
 
 using namespace std;
-
-//void reshape(int w,int h)
-//{    
-//	glViewport(0,0,w,h);
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//    gluPerspective (60, (GLfloat)w / (GLfloat)h, 0.1, 1000.0);
-//	//glOrtho(-25,25,-2,2,0.1,100);	
-//	glMatrixMode(GL_MODELVIEW);
-//}
 
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB|GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800,600);
 	glutInitWindowPosition(200, 150);
 	glutCreateWindow("METian Rush");
 	glutDisplayFunc(Display::displayFunction);
-	//glutReshapeFunc(reshape);
 	glutKeyboardFunc(Keyboard::keyboardFunction);
 	glutSpecialFunc(Keyboard::keystrokeFunction);
 	glShadeModel(GL_SMOOTH);
@@ -35,7 +25,7 @@ int main(int argc, char** argv)
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 	Display::clear();
-
+	Light::enableLighting();
 
 	glutMainLoop();
 }

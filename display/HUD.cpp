@@ -38,7 +38,7 @@ void HUD::draw() {
 		Camera::displayText(0, 520, "Press P to Pause.", 100, 0, 0);
 	} else if(state == GameManager::STATE_OVER) {
 		drawStats();
-		Camera::displayText(400, 500, "GAMEOVER", 255, 0, 0);
+		Camera::displayText(380, 300, "GAMEOVER", 255, 0, 0);
 		Camera::displayText(0, 500, "Press N for a New Game.", 0, 0, 100);
 	}
 

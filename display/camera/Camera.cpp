@@ -26,7 +26,7 @@ void Camera::setupCamera() {
 //				0,0,1,
 //				0,1,0);
 
-	GLfloat lookAtZ = Character::getZ() - 20;
+	GLfloat lookAtZ = Character::getZ() - 30;
 
 	gluLookAt(	0,0,lookAtZ,
 				0,0,lookAtZ+1,
@@ -60,7 +60,7 @@ void Camera::exit2DOverlay() {
 
 
 void Camera::displayText(int x, int y, string text, int r, int g, int b) {
-    glColor3f(r, g, b);
+    glColor3d(r, g, b);
     glRasterPos2i(x, y);
     void *font = GLUT_BITMAP_HELVETICA_18;
     for(int i = 0; i < text.length(); i++){

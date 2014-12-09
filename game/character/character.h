@@ -31,6 +31,9 @@ public:
 	static void setZ(GLfloat Z);
 
 	static void resetPosition();
+	static void moveForward(GLfloat value);
+	static void moveLeft(GLfloat value);
+	static void moveRight(GLfloat value);
 };
 
 #endif /* CHARACTER_H_ */
