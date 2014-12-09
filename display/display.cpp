@@ -13,7 +13,7 @@ void Display::displayFunction() {
 	if(!spotlight.isEnabled())
 		spotlight.enable();
 
-	GLfloat pos[] = {Character::getX(), Character::getY()+5, Character::getZ()-10, 1};
+	GLfloat pos[] = {Character::getX(), Character::getY()+10, Character::getZ()-20, 1};
 	spotlight.setPosition(pos);
 
 	GLfloat dir[] = {0, -1, 2, 1};
