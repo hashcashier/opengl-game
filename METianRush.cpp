@@ -3,8 +3,7 @@
 
 
 #include "platformIndependentHeader.h"
-
-#include "opengl/ObjectLoader.h"
+#include "input/Keyboard.h"
 
 using namespace std;
 
@@ -29,8 +28,8 @@ int main(int argc, char** argv)
 	glutCreateWindow("METian Rush");
 	glutDisplayFunc(displayFunction);
 	//glutReshapeFunc(reshape);
-	//glutKeyboardFunc(MyKeyboard_shary);
-	//glutSpecialFunc(MySpecialKeyboard_shary);
+	glutKeyboardFunc(Keyboard::keyboardFunction);
+	glutSpecialFunc(Keyboard::keystrokeFunction);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
