@@ -8,15 +8,18 @@
 #include "display.h"
 
 void Display::displayFunction() {
-	Camera::setupCamera();
 	static Spotlight spotlight = Spotlight();
-	spotlight.enable();
+	Camera::setupCamera();
+	if(!spotlight.isEnabled())
+		spotlight.enable();
 
-	GLfloat pos[] = {Character::getX(), Character::getY()+5, Character::getZ(), 1};
+	GLfloat pos[] = {Character::getX(), Character::getY()+5, Character::getZ()-10, 1};
 	spotlight.setPosition(pos);
 
-	GLfloat dir[] = {Character::getX(), Character::getY(), Character::getZ(), 1};
+	GLfloat dir[] = {0, -1, 2, 1};
 	spotlight.setDirection(dir);
+
+	spotlight.setIntensity(GameManager::getEnergy()/10.0);
 
 	drawWalkway();
 	drawEndWall();

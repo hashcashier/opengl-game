@@ -13,17 +13,28 @@ Spotlight::Spotlight() {
 	position[3] = 1;
 	Light::reserveLight(number);
 	setPosition(position);
+	enabled = false;
+	intensity = 10;
 }
 
 void Spotlight::enable() {
 	Light::enableLight(number);
+	enabled = true;
 	float lightAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	glLightfv(Light::getLight(number), GL_AMBIENT, lightAmbient);	//Setup The Ambient Light
 
-	glLightf(Light::getLight(number), GL_SPOT_CUTOFF, 5.0);
-	glLightf(Light::getLight(number), GL_SPOT_EXPONENT, 10);
+	glLightf(Light::getLight(number), GL_SPOT_EXPONENT, 1);
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmbient);
+}
+
+bool Spotlight::isEnabled() {
+	return enabled;
+}
+
+void Spotlight::setIntensity(GLfloat intens) {
+	intensity = intens;
+	glLightf(Light::getLight(number), GL_SPOT_CUTOFF, intensity);
 }
 
 void Spotlight::setPosition(GLfloat pos[]) {

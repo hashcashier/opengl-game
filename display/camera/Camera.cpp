@@ -46,10 +46,12 @@ void Camera::enter2DOverlay() {
     glPushMatrix();
     glLoadIdentity();
 
-    glDisable( GL_DEPTH_TEST );
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
 }
 
 void Camera::exit2DOverlay() {
+    glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
 
     glMatrixMode(GL_MODELVIEW);
