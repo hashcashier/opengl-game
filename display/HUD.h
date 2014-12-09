@@ -15,6 +15,7 @@
 using namespace std;
 
 class HUD {
+	static void drawStats();
 public:
 	static void draw();
 };

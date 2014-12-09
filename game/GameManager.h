@@ -8,13 +8,18 @@
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
 
+#include "../platformIndependentHeader.h"
+using namespace std;
+
 class GameManager {
 	static int GAME_STATE; // 0 = Main Menu, 1 = Paused, 2 = Running, 3 = Over
 	static int PLAYER_SCORE;
 	static int GAME_ROUND;
 	static int PLAYER_ENERGY;
 public:
+	static const int STATE_STOPPED, STATE_PAUSED, STATE_RUNNING, STATE_OVER;
 	static void startGame();
+	static void resumeGame();
 	static void pauseGame();
 	static void endGame();
 	static int getState();

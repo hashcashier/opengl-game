@@ -38,7 +38,6 @@ void drawEndWall() {
 		}
 	}
 }
-atrix();
 
 
 void drawObstacles(int x, int y, int z) {
@@ -58,6 +57,7 @@ void drawObstacles(int x, int y, int z) {
 	gluSphere(esphere, 0.5, 100, 100);
 	gluDeleteQuadric(esphere);
 	glPopMatrix();
+
 }
 
 bool hasObstacle(int x, int z) {

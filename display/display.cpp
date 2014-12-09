@@ -8,8 +8,6 @@
 #include "display.h"
 
 void Display::displayFunction() {
-//	static Character protagonist = Character(ObjectLoader::loadObject("al.obj"));
-
 	Camera::setupCamera();
 
 	drawWalkway();

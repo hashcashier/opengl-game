@@ -12,8 +12,9 @@
 using namespace std;
 
 class Spotlight {
+	int number;
 public:
-
+	Spotlight();
 };
 
 #endif /* SPOTLIGHT_H_ */

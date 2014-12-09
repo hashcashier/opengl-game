@@ -8,6 +8,10 @@
 #ifndef KEYBOARD_H_
 #define KEYBOARD_H_
 
+#include "../platformIndependentHeader.h"
+#include "../game/GameManager.h"
+using namespace std;
+
 class Keyboard {
 public:
 	static void keyboardFunction(unsigned char c, int x, int y);

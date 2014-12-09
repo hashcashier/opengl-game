@@ -12,16 +12,37 @@ int GameManager::GAME_ROUND = 0;
 int GameManager::PLAYER_SCORE = 0;
 int GameManager::PLAYER_ENERGY = 0;
 
+const int GameManager::STATE_STOPPED = 0;
+const int GameManager::STATE_PAUSED = 1;
+const int GameManager::STATE_RUNNING = 2;
+const int GameManager::STATE_OVER = 3;
+
+
 void GameManager::startGame() {
+	cerr << "Game Started" << endl;
+	GAME_ROUND++;
+	PLAYER_SCORE = 0;
+	PLAYER_ENERGY = 100;
 	GAME_STATE = 2;
+	glutPostRedisplay();
+}
+
+void GameManager::resumeGame() {
+	cerr << "Game Resumed" << endl;
+	GAME_STATE = 2;
+	glutPostRedisplay();
 }
 
 void GameManager::pauseGame() {
+	cerr << "Game Paused" << endl;
 	GAME_STATE = 1;
+	glutPostRedisplay();
 }
 
 void GameManager::endGame() {
+	cerr << "Game End" << endl;
 	GAME_STATE = 3;
+	glutPostRedisplay();
 }
 
 int GameManager::getState() {
@@ -29,7 +50,8 @@ int GameManager::getState() {
 }
 
 void GameManager::dissipateEnergy() {
-	// TODO: calculate new energy
+	if(PLAYER_ENERGY-- == 0)
+		endGame();
 }
 
 void GameManager::addEnergy(int amount) {
