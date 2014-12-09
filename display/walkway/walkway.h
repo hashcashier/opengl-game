@@ -5,11 +5,14 @@
  *      Author: rami
  */
 
-#include "../../platformIndependentHeader.h"
-using namespace std;
 
 #ifndef WALKWAY_H_
 #define WALKWAY_H_
+
+#include "../../platformIndependentHeader.h"
+#include "../shapes/Cube.h"
+
+using namespace std;
 
 extern void cube_textured(int x, int y, int z);
 extern void cube(int x, int y, int z);

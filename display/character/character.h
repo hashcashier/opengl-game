@@ -5,12 +5,13 @@
  *      Author: rami
  */
 
+#ifndef CHARACTER_H_
+#define CHARACTER_H_
+
 #include "../../platformIndependentHeader.h"
 #include "../../opengl/ObjectLoader.h"
 using namespace std;
 
-#ifndef CHARACTER_H_
-#define CHARACTER_H_
 
 void drawCharacter();
 extern GLuint elephant;

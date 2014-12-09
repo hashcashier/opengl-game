@@ -11,7 +11,7 @@ void drawWalkway() {
 	for(int x=-11;x<12;x++)
 			for(int z=29;z<240;z++)
 			{
-				cube_textured(x, -10, z);
+				Cube::drawTextured(x, -10, z);
 				if (hasObstacle(x,z)) {
 					/*cube(x, -9, z);
 					cube(x, -8, z);
@@ -28,12 +28,12 @@ void drawWalkway() {
 void drawEndWall() {
 	for (int x=-11;x<12;x++) {
 		for (int y=-9;y<0;y++){
-			cube(x,y,240);
+			Cube::draw(x,y,240);
 		}
 	}
 	for (int y=0;y<=11;y++) {
 		for (int x=y-11;x+y<12;x++) {
-			cube(x,y,240);
+			Cube::draw(x,y,240);
 		}
 	}
 }
