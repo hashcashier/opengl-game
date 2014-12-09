@@ -4,7 +4,6 @@
 
 #include "platformIndependentHeader.h"
 
-#include "TextureBuilder.h"
 #include "opengl/ObjectLoader.h"
 extern GLuint elephant;
 
