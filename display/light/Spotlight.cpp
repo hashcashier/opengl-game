@@ -18,14 +18,16 @@ Spotlight::Spotlight() {
 }
 
 void Spotlight::enable() {
-	Light::enableLight(number);
-	enabled = true;
 	float lightAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	glLightfv(Light::getLight(number), GL_AMBIENT, lightAmbient);	//Setup The Ambient Light
 
-	glLightf(Light::getLight(number), GL_SPOT_EXPONENT, 1);
+	glLightf(Light::getLight(number), GL_SPOT_EXPONENT, 2);
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmbient);
+
+	Light::enableLight(number);
+	cerr << "Light " << number << " on" << endl;
+	enabled = true;
 }
 
 bool Spotlight::isEnabled() {

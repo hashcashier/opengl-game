@@ -12,14 +12,14 @@ GLuint lights[] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4, GL_LIG
 vector<GLuint> Light::allLights(lights, lights+8);
 
 void Light::killAll() {
-	GLfloat dummy[4] = {0.0, 0.0, 0.0, 1.0};
-	 for(int i = 0; i < allLights.size(); i++) {
+	GLfloat dummy[4] = { 0.0, 0.0, 0.0, 1.0 };
+	for (int i = 0; i < allLights.size(); i++) {
 		glLightfv(i, GL_AMBIENT, dummy);
 		glLightfv(i, GL_DIFFUSE, dummy);
-		glLightfv(i, GL_POSITION,dummy);
-		glLightfv(i, GL_SPECULAR,dummy);
+		glLightfv(i, GL_POSITION, dummy);
+		glLightfv(i, GL_SPECULAR, dummy);
 		glDisable(allLights[i]);
-	 }
+	}
 	enabledLights.clear();
 }
 

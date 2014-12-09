@@ -9,22 +9,32 @@
 
 void Display::displayFunction() {
 	static Spotlight spotlight = Spotlight();
+	static Spotlight torch = Spotlight();
+	glPushMatrix();
 	Camera::setupCamera();
+
+	GLfloat pos[] = {Character::getX(), Character::getY()+10, Character::getZ()-50, 1};
+	spotlight.setPosition(pos);
+	GLfloat dir[] = {0, -1, 5, 1};
+	spotlight.setDirection(dir);
+	spotlight.setIntensity(GameManager::getEnergy()/15.0);
+
+	GLfloat tpos[] = {Character::getX(), Character::getY()+1, Character::getZ(), 1};
+	torch.setPosition(tpos);
+	GLfloat tdir[] = {0, 0, 1, 1};
+	torch.setDirection(tdir);
+	torch.setIntensity(100);
+
 	if(!spotlight.isEnabled())
 		spotlight.enable();
-
-	GLfloat pos[] = {Character::getX(), Character::getY()+10, Character::getZ()-20, 1};
-	spotlight.setPosition(pos);
-
-	GLfloat dir[] = {0, -1, 2, 1};
-	spotlight.setDirection(dir);
-
-	spotlight.setIntensity(GameManager::getEnergy()/10.0);
+//	if(!torch.isEnabled())
+//		torch.enable();
 
 	drawWalkway();
 	drawEndWall();
 
 	Character::draw();
+	glPopMatrix();
 
 
 	HUD::draw();

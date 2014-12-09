@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	Display::clear();
 
 	Light::enableLighting();
-	Light::killAll();
+//	Light::killAll();
 
 	glutMainLoop();
 }
