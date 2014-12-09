@@ -13,12 +13,13 @@
 using namespace std;
 
 class Character {
-	GLuint object;
-	float rotation;
+	static GLuint object;
+	static float rotation;
 public:
-	Character(GLuint objectId);
-	void setRotation(float rot);
-	void draw();
+	static bool hasObjectId();
+	static void setObjectId(GLuint objectId);
+	static void setRotation(float rot);
+	static void draw();
 };
 
 #endif /* CHARACTER_H_ */

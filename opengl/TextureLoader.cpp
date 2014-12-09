@@ -9,6 +9,7 @@
 
 GLuint TextureLoader::loadTexture(const char * filename, int width, int height,
 		int wrap) {
+	cerr << "Loading Texture: " << filename << endl;
 	GLuint texture;
 	char * data;
 	FILE * file;
@@ -55,6 +56,6 @@ GLuint TextureLoader::loadTexture(const char * filename, int width, int height,
 
 	// free buffer
 	free(data);
-
+	cerr << "Done, ID: " << texture << endl;
 	return texture;
 }

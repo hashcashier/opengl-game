@@ -19,6 +19,10 @@ using namespace std;
 extern void drawWalkway();
 extern void drawEndWall();
 
-void displayFunction();
+class Display {
+public:
+	static void displayFunction();
+	static void clear();
+};
 
 #endif /* DISPLAY_H_ */

@@ -7,17 +7,24 @@
 
 #include "display.h"
 
-void displayFunction() {
-	static Character protagonist = Character(ObjectLoader::loadObject("al.obj"));
+void Display::displayFunction() {
+//	static Character protagonist = Character(ObjectLoader::loadObject("al.obj"));
+
 	Camera::setupCamera();
 
 	drawWalkway();
 	drawEndWall();
 
-	protagonist.draw();
+	Character::draw();
 
 	HUD::draw();
 	glFlush();
-	glutSwapBuffers();
+//	glutSwapBuffers();
 }
 
+void Display::clear() {
+	glClearColor(1.0,1.0,1.0,0.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	glFlush();
+}

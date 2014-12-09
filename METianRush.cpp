@@ -4,10 +4,9 @@
 
 #include "platformIndependentHeader.h"
 #include "input/Keyboard.h"
+#include "display/display.h"
 
 using namespace std;
-
-extern void displayFunction();
 
 //void reshape(int w,int h)
 //{    
@@ -26,7 +25,7 @@ int main(int argc, char** argv)
 	glutInitWindowSize(800,600);
 	glutInitWindowPosition(200, 150);
 	glutCreateWindow("METian Rush");
-	glutDisplayFunc(displayFunction);
+	glutDisplayFunc(Display::displayFunction);
 	//glutReshapeFunc(reshape);
 	glutKeyboardFunc(Keyboard::keyboardFunction);
 	glutSpecialFunc(Keyboard::keystrokeFunction);
@@ -35,6 +34,8 @@ int main(int argc, char** argv)
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
-	glClearColor(1.0,1.0,1.0,0.0);
+	Display::clear();
+
+
 	glutMainLoop();
 }

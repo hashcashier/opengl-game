@@ -34,7 +34,7 @@ void Camera::enter2DOverlay() {
     glPushMatrix();             //save
     glLoadIdentity();           //and clear
 
-    gluOrtho2D(0, 1024, 0, 720);
+    gluOrtho2D(0, 800, 0, 600);
     glMatrixMode(GL_MODELVIEW);
 
     glPushMatrix();

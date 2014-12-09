@@ -8,7 +8,7 @@
 #include "ObjectLoader.h"
 
 GLuint ObjectLoader::loadObject(string fname) {
-	cerr << "Loading: " << fname << endl;
+	cerr << "Loading Object: " << fname << endl;
 	FILE *fp;
 	int read;
 	GLfloat x, y, z;
@@ -35,6 +35,6 @@ GLuint ObjectLoader::loadObject(string fname) {
 	glPopMatrix();
 	glEndList();
 	fclose(fp);
-	cerr << "ID: " << object << endl;
+	cerr << "Done, ID: " << object << endl;
 	return object;
 }

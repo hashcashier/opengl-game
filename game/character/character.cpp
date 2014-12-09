@@ -7,9 +7,15 @@
 
 #include "character.h"
 
-Character::Character(GLuint objectId) {
+GLuint Character::object = 0;
+float Character::rotation = 0;
+
+bool Character::hasObjectId() {
+	return object != 0;
+}
+
+void Character::setObjectId(GLuint objectId) {
 	object = objectId;
-	rotation = 0;
 }
 
 void Character::setRotation(float rot) {
@@ -17,6 +23,9 @@ void Character::setRotation(float rot) {
 }
 
 void Character::draw() {
+	if(!hasObjectId())
+		setObjectId(ObjectLoader::loadObject("al.obj"));
+
 	glPushMatrix();
 	glTranslated(-1,-5.00,20);
 	glColor3d(0.3,0.1,0.9);

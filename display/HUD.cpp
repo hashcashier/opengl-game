@@ -10,7 +10,7 @@
 void HUD::draw() {
 	Camera::enter2DOverlay();
 
-	Camera::displayText(0, 0, "THIS IS A DEMO.");
+	Camera::displayText(0, 580, "THIS IS A DEMO.");
 
 	Camera::exit2DOverlay();
 }
