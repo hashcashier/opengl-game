@@ -10,26 +10,25 @@
 void HUD::drawStats() {
 	ostringstream oss;
 	oss << GameManager::getScore();
-	Camera::displayText(0, 580, "Score: " + oss.str());
+	Camera::displayText(0, 580, "Score: " + oss.str(), 0, 0, 100);
 	oss.str("");
 
 	oss << GameManager::getEnergy();
-	Camera::displayText(0, 560, "Energy: " + oss.str());
+	Camera::displayText(0, 560, "Energy: " + oss.str(), 0, 0, 100);
 	oss.str("");
 
 	oss << GameManager::getRound();
-	Camera::displayText(0, 540, "Round " + oss.str());
+	Camera::displayText(0, 540, "Round " + oss.str(), 0, 0, 100);
 	oss.str("");
 }
 
 void HUD::draw() {
 	Camera::enter2DOverlay();
 
-	Camera::displayText(0, 5, "THIS IS A DEMO.");
-
 	int state = GameManager::getState();
 	if(state == GameManager::STATE_STOPPED) {
 		Camera::displayText(0, 580, "Press S to Start!", 0, 0, 100);
+		Camera::displayText(380, 300, "Luminosity", 100, 100, 100);
 	} else if(state == GameManager::STATE_PAUSED) {
 		drawStats();
 		Camera::displayText(0, 520, "Press R to Resume.", 0, 100, 0);

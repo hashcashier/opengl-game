@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800,600);
 	glutInitWindowPosition(200, 150);
-	glutCreateWindow("METian Rush");
+	glutCreateWindow("Luminosity");
 	glutDisplayFunc(Display::displayFunction);
 	glutKeyboardFunc(Keyboard::keyboardFunction);
 	glutSpecialFunc(Keyboard::keystrokeFunction);

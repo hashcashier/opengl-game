@@ -80,7 +80,7 @@ void drawObstacles(int x, int y, int z) {
 
 	glPushMatrix();
 	glColor3f(1.0f,1.0f,1.0f);
-	glTranslated(x,y,z);//
+	glTranslated(x,y,z);
 	glRotated(-90,1,0,0);
 	GLUquadricObj* esphere = gluNewQuadric();
 	gluQuadricTexture(esphere, true);
