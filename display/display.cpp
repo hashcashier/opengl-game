@@ -8,6 +8,7 @@
 #include "display.h"
 
 void displayFunction() {
+	static Character protagonist = Character(ObjectLoader::loadObject("al.obj"));
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -21,7 +22,8 @@ void displayFunction() {
 	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 	drawWalkway();
 	drawEndWall();
-	drawCharacter();
+	protagonist.draw();
+//	drawCharacter();
 
 	glFlush();
 	glutSwapBuffers();

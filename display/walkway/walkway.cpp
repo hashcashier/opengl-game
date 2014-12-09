@@ -7,6 +7,8 @@
 
 #include "walkway.h"
 
+GLuint grassTexture;
+
 void drawWalkway() {
 	for(int x=-11;x<12;x++)
 			for(int z=29;z<240;z++)
@@ -61,4 +63,3 @@ void drawObstacles(int x, int y, int z) {
 bool hasObstacle(int x, int z) {
 	return ((x+z)%17==0)&&(x%4==0);
 }
-

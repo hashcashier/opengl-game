@@ -5,7 +5,6 @@
  *      Author: rami
  */
 
-
 #ifndef WALKWAY_H_
 #define WALKWAY_H_
 
@@ -17,7 +16,7 @@ using namespace std;
 
 extern void cube_textured(int x, int y, int z);
 extern void cube(int x, int y, int z);
-extern GLuint LoadTexture( const char * filename, int width, int height, int wrap );
+extern GLuint LoadTexture(const char * filename, int width, int height, int wrap);
 
 void drawWalkway();
 void drawEndWall();

@@ -5,7 +5,6 @@
 #include "platformIndependentHeader.h"
 
 #include "opengl/ObjectLoader.h"
-extern GLuint elephant;
 
 using namespace std;
 
@@ -36,8 +35,7 @@ int main(int argc, char** argv)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	glClearColor(1.0,1.0,1.0,0.0);
 	glEnable(GL_TEXTURE_2D);
-	elephant = ObjectLoader::loadObject("al.obj");
+	glClearColor(1.0,1.0,1.0,0.0);
 	glutMainLoop();
 }

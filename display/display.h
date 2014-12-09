@@ -5,11 +5,13 @@
  *      Author: rami
  */
 
-#include "../platformIndependentHeader.h"
-using namespace std;
-
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
+
+#include "../platformIndependentHeader.h"
+#include "character/character.h"
+#include "../opengl/ObjectLoader.h"
+using namespace std;
 
 extern void drawWalkway();
 extern void drawEndWall();

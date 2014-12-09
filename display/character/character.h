@@ -12,8 +12,13 @@
 #include "../../opengl/ObjectLoader.h"
 using namespace std;
 
-
-void drawCharacter();
-extern GLuint elephant;
+class Character {
+	GLuint object;
+	float rotation;
+public:
+	Character(GLuint objectId);
+	void setRotation(float rot);
+	void draw();
+};
 
 #endif /* CHARACTER_H_ */
