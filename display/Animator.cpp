@@ -13,7 +13,7 @@ void Animator::animate(int value) {
 
 	if(Character::getZ() + 2 >= Walkway::HIGH_LIMIT)
 		GameManager::finishGame();
-//	GameManager::dissipateEnergy();
+	GameManager::dissipateEnergy();
 
 	if(GameManager::getState() == GameManager::STATE_RUNNING)
 		glutTimerFunc(16, animate, 16);
