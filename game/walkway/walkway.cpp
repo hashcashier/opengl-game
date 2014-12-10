@@ -29,7 +29,7 @@ void drawWalkway() {
 		glPushMatrix();
 
 		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
-			for (int z = 20; z < 240; z++) {
+			for (int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++) {
 				Cube::draw(x, -10, z);
 				if (hasObstacle(x, z)) {
 					/*cube(x, -9, z);
