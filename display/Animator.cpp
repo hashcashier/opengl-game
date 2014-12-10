@@ -20,6 +20,12 @@ void Animator::animate(int value) {
 		GameManager::addEnergy(40);
 	}
 
+	if(Walkway::nearCoin(Character::getX(), Character::getY(), Character::getZ())) {
+		int id = Walkway::nearestCoin(Character::getX(), Character::getY(), Character::getZ());
+		Walkway::removeCoin(id);
+		GameManager::addScore(5);
+	}
+
 	GameManager::dissipateEnergy();
 
 	if(GameManager::getState() == GameManager::STATE_RUNNING)

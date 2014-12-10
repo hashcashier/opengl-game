@@ -13,6 +13,7 @@
 #include "../../opengl/TextureLoader.h"
 #include "../../display/shapes/Position.h"
 #include "EnergyBall.h"
+#include "Coin.h"
 
 using namespace std;
 
@@ -27,14 +28,21 @@ bool hasObstacle(int x, int z);
 class Walkway {
 	static GLuint walkwayList;
 	static vector<Position> energyBalls;
+	static vector<Position> coinDisks;
+	static bool nearObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
+	static int nearestObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
 public:
 	static const int LEFT_LIMIT, RIGHT_LIMIT;
 	static const int LOW_LIMIT, HIGH_LIMIT;
 	static bool nearEnergy(GLfloat x, GLfloat y, GLfloat z);
 	static int nearestEnergy(GLfloat x, GLfloat y, GLfloat z);
+	static bool nearCoin(GLfloat x, GLfloat y, GLfloat z);
+	static int nearestCoin(GLfloat x, GLfloat y, GLfloat z);
 	static void draw();
 	static void reset();
 	static void removeBall(int i);
+	static void removeCoin(int i);
+	static void removeObject(int i, vector<Position> &objects);
 };
 
 

@@ -15,6 +15,7 @@ const int Walkway::HIGH_LIMIT = 240;
 GLuint grassTexture;
 GLuint Walkway::walkwayList = 0;
 vector<Position> Walkway::energyBalls;
+vector<Position> Walkway::coinDisks;
 
 void Walkway::draw() {
 	if(walkwayList != 0) {
@@ -45,8 +46,14 @@ void Walkway::draw() {
 	if(energyBalls.size() == 0) {
 		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
 			for(int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++) {
-				if(rand()%1000 == 0)
+				if(rand()%500 == 0)
 					energyBalls.push_back(Position(x, -9, z));
+			}
+	if(coinDisks.size() == 0)
+		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
+			for(int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++) {
+				if(rand()%200 == 0)
+					coinDisks.push_back(Position(x, -9, z));
 			}
 	}
 
@@ -56,37 +63,70 @@ void Walkway::draw() {
 
 	for(int i = 0; i < energyBalls.size(); i++)
 		EnergyBall::draw(energyBalls[i].x, energyBalls[i].y, energyBalls[i].z, 1);
+	for(int i = 0; i < coinDisks.size(); i++)
+		Coin::draw(coinDisks[i].x, coinDisks[i].y, coinDisks[i].z, 1);
 	return;
 }
 
-bool hasObstacle(int x, int z) {
-	return ((x+z)%17==0)&&(x%4==0);
-}
-
-bool Walkway::nearEnergy(GLfloat x, GLfloat y, GLfloat z) {
-	for(int i = 0; i < energyBalls.size(); i++) {
-		GLfloat dx = energyBalls[i].x - x;
-		GLfloat dy = energyBalls[i].y - y;
-		GLfloat dz = energyBalls[i].z - z;
-		if(dx*dx + dy*dy + dz*dz < 1)
+bool Walkway::nearObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects) {
+	for(int i = 0; i < objects.size(); i++) {
+		GLfloat dx = objects[i].x - x;
+		GLfloat dy = objects[i].y - y;
+		GLfloat dz = objects[i].z - z;
+		if (dx * dx + dy * dy + dz * dz < 1)
 			return true;
 	}
 	return false;
 }
 
+int Walkway::nearestObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects) {
+	int res = 0;
+	GLfloat dist = -1;
+	for(int i = 0; i < objects.size(); i++) {
+		GLfloat dx = objects[i].x - x;
+		GLfloat dy = objects[i].y - y;
+		GLfloat dz = objects[i].z - z;
+		GLfloat dsqr = dx * dx + dy * dy + dz * dz;
+		if (dist == -1 || dsqr < dist)
+			dist = dsqr, res = i;
+	}
+	return res;
+}
+
+bool Walkway::nearEnergy(GLfloat x, GLfloat y, GLfloat z) {
+	return nearObject(x, y, z, energyBalls);
+}
+
+bool Walkway::nearCoin(GLfloat x, GLfloat y, GLfloat z) {
+	return nearObject(x, y, z, coinDisks);
+}
+
 int Walkway::nearestEnergy(GLfloat x, GLfloat y, GLfloat z) {
-	return false;
+	return nearestObject(x, y, z, energyBalls);
+}
+
+int Walkway::nearestCoin(GLfloat x, GLfloat y, GLfloat z) {
+	return nearestObject(x, y, z, coinDisks);
 }
 
 void Walkway::reset() {
 	walkwayList = 0;
 	energyBalls.clear();
+	coinDisks.clear();
+}
+
+void Walkway::removeObject(int i, vector<Position> &objects) {
+	for(vector<Position>::iterator it = objects.begin(); it != objects.end(); it++, i--)
+		if(!i) {
+			objects.erase(it);
+			break;
+		}
 }
 
 void Walkway::removeBall(int i) {
-	for(vector<Position>::iterator it = energyBalls.begin(); it != energyBalls.end(); it++, i--)
-		if(!i) {
-			energyBalls.erase(it);
-			break;
-		}
+	removeObject(i, energyBalls);
+}
+
+void Walkway::removeCoin(int i) {
+	removeObject(i, coinDisks);
 }
