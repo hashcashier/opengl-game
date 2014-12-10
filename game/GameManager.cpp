@@ -24,9 +24,10 @@ void GameManager::startGame() {
 	if(GAME_STATE == STATE_OVER || GAME_STATE == STATE_STOPPED)
 		PLAYER_SCORE = GAME_ROUND = 0;
 	GAME_ROUND++;
-	PLAYER_ENERGY = 100;
+	PLAYER_ENERGY = 200;
 	GAME_STATE = STATE_RUNNING;
 	Character::resetPosition();
+	Walkway::reset();
 	glutPostRedisplay();
 	Animator::animate(0);
 }

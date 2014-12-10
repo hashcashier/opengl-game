@@ -13,6 +13,13 @@ void Animator::animate(int value) {
 
 	if(Character::getZ() + 2 >= Walkway::HIGH_LIMIT)
 		GameManager::finishGame();
+
+	if(Walkway::nearEnergy(Character::getX(), Character::getY(), Character::getZ())) {
+		int id = Walkway::nearestEnergy(Character::getX(), Character::getY(), Character::getZ());
+		Walkway::removeBall(id);
+		GameManager::addEnergy(40);
+	}
+
 	GameManager::dissipateEnergy();
 
 	if(GameManager::getState() == GameManager::STATE_RUNNING)
