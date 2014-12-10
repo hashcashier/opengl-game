@@ -35,6 +35,10 @@ void HUD::draw() {
 	} else if(state == GameManager::STATE_RUNNING) {
 		drawStats();
 		Camera::displayText(0, 520, "Press P to Pause.", 100, 0, 0);
+	} else if(state == GameManager::STATE_DONE) {
+		drawStats();
+		Camera::displayText(380, 300, "COMPLETE", 0, 255, 0);
+		Camera::displayText(0, 500, "Press C for the next round.", 0, 0, 100);
 	} else if(state == GameManager::STATE_OVER) {
 		drawStats();
 		Camera::displayText(380, 300, "GAMEOVER", 255, 0, 0);

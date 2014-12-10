@@ -15,17 +15,17 @@ int GameManager::PLAYER_ENERGY = 0;
 const int GameManager::STATE_STOPPED = 0;
 const int GameManager::STATE_PAUSED = 1;
 const int GameManager::STATE_RUNNING = 2;
-const int GameManager::STATE_OVER = 3;
+const int GameManager::STATE_OVER = 4;
+const int GameManager::STATE_DONE = 3;
 
 
 void GameManager::startGame() {
 	cerr << "Game Started" << endl;
-	if(GAME_STATE == STATE_OVER)
+	if(GAME_STATE == STATE_OVER || GAME_STATE == STATE_STOPPED)
 		PLAYER_SCORE = GAME_ROUND = 0;
 	GAME_ROUND++;
-	PLAYER_SCORE = 0;
 	PLAYER_ENERGY = 100;
-	GAME_STATE = 2;
+	GAME_STATE = STATE_RUNNING;
 	Character::resetPosition();
 	glutPostRedisplay();
 	Animator::animate(0);
@@ -33,20 +33,26 @@ void GameManager::startGame() {
 
 void GameManager::resumeGame() {
 	cerr << "Game Resumed" << endl;
-	GAME_STATE = 2;
+	GAME_STATE = STATE_RUNNING;
 	glutPostRedisplay();
 	Animator::animate(0);
 }
 
 void GameManager::pauseGame() {
 	cerr << "Game Paused" << endl;
-	GAME_STATE = 1;
+	GAME_STATE = STATE_PAUSED;
+	glutPostRedisplay();
+}
+
+void GameManager::finishGame() {
+	cerr << "Round Finished" << endl;
+	GAME_STATE = STATE_DONE;
 	glutPostRedisplay();
 }
 
 void GameManager::endGame() {
 	cerr << "Game End" << endl;
-	GAME_STATE = 3;
+	GAME_STATE = STATE_OVER;
 	glutPostRedisplay();
 }
 

@@ -23,5 +23,11 @@ void drawEndWall();
 void drawObstacles(int x, int y, int z);
 bool hasObstacle(int x, int z);
 
+class Walkway {
+public:
+	static const int LEFT_LIMIT, RIGHT_LIMIT;
+	static const int LOW_LIMIT, HIGH_LIMIT;
+};
+
 
 #endif /* WALKWAY_H_ */

@@ -30,6 +30,11 @@ void Keyboard::keyboardFunction(unsigned char c, int x, int y) {
 		if(state == GameManager::STATE_OVER)
 			GameManager::startGame();
 		break;
+	case 'c':
+	case 'C':
+		if(state == GameManager::STATE_DONE)
+			GameManager::startGame();
+		break;
 	}
 }
 

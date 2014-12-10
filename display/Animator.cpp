@@ -10,7 +10,10 @@
 void Animator::animate(int value) {
 
 	Character::moveForward(0.5);
-	GameManager::dissipateEnergy();
+
+	if(Character::getZ() + 2 >= Walkway::HIGH_LIMIT)
+		GameManager::finishGame();
+//	GameManager::dissipateEnergy();
 
 	if(GameManager::getState() == GameManager::STATE_RUNNING)
 		glutTimerFunc(16, animate, 16);

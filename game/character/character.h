@@ -10,6 +10,8 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../opengl/ObjectLoader.h"
+#include "../walkway/walkway.h"
+
 using namespace std;
 
 class Character {

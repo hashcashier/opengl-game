@@ -18,10 +18,11 @@ class GameManager {
 	static int GAME_ROUND;
 	static int PLAYER_ENERGY;
 public:
-	static const int STATE_STOPPED, STATE_PAUSED, STATE_RUNNING, STATE_OVER;
+	static const int STATE_STOPPED, STATE_PAUSED, STATE_RUNNING, STATE_DONE, STATE_OVER;
 	static void startGame();
 	static void resumeGame();
 	static void pauseGame();
+	static void finishGame();
 	static void endGame();
 	static int getState();
 	static void dissipateEnergy();

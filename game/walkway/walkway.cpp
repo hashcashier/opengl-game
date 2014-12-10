@@ -7,6 +7,11 @@
 
 #include "walkway.h"
 
+const int Walkway::LEFT_LIMIT = -11;
+const int Walkway::RIGHT_LIMIT = 12;
+const int Walkway::LOW_LIMIT = 20;
+const int Walkway::HIGH_LIMIT = 240;
+
 GLuint grassTexture;
 GLuint walkwayList = 0;
 
@@ -23,7 +28,7 @@ void drawWalkway() {
 		glNewList(walkwayList, GL_COMPILE);
 		glPushMatrix();
 
-		for (int x = -11; x < 12; x++)
+		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
 			for (int z = 20; z < 240; z++) {
 				Cube::draw(x, -10, z);
 				if (hasObstacle(x, z)) {
@@ -45,31 +50,17 @@ void drawWalkway() {
 	glCallList(walkwayList);
 	glPopMatrix();
 	return;
-	for (int x = -11; x < 12; x++)
-		for (int z = 29; z < 240; z++) {
-			Cube::draw(x, -10, z);
-			if (hasObstacle(x, z)) {
-				/*cube(x, -9, z);
-				 cube(x, -8, z);
-				 cube(x, -7, z);
-				 cube(x, -6, z);*/
-				//drawObstacles(x,-9,z);
-				//drawObstacles(x,-8,z);
-				//drawObstacles(x,-7,z);
-//				drawObstacles(x, -6, z);
-			}
-		}
 }
 
 void drawEndWall() {
-	for (int x=-11;x<12;x++) {
-		for (int y=-9;y<0;y++){
-			Cube::draw(x,y,240);
+	for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++) {
+		for (int y = -9; y < 0; y++) {
+			Cube::draw(x, y, 240);
 		}
 	}
-	for (int y=0;y<=11;y++) {
-		for (int x=y-11;x+y<12;x++) {
-			Cube::draw(x,y,240);
+	for (int y = 0; y < Walkway::RIGHT_LIMIT; y++) {
+		for (int x = y - 11; x + y < 12; x++) {
+			Cube::draw(x, y, 240);
 		}
 	}
 }

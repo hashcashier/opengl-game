@@ -11,6 +11,7 @@
 #include "../platformIndependentHeader.h"
 #include "../game/GameManager.h"
 #include "../game/character/character.h"
+#include "../game/walkway/walkway.h"
 
 class Animator {
 public:

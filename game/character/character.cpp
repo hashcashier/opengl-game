@@ -73,9 +73,11 @@ void Character::moveForward(GLfloat value) {
 }
 
 void Character::moveLeft(GLfloat value) {
-	x += value;
+	if(x + value < Walkway::RIGHT_LIMIT)
+		x += value;
 }
 
 void Character::moveRight(GLfloat value) {
-	x -= value;
+	if(x - value >= Walkway::LEFT_LIMIT)
+		x -= value;
 }
