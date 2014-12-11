@@ -14,7 +14,7 @@ using namespace std;
 
 class BMPTextureLoader {
 public:
-	GLuint loadTexture(string fileName);
+	static GLuint loadTexture(string fileName);
 };
 
 #endif /* BMPTEXTURELOADER_H_ */

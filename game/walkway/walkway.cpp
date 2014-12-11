@@ -18,17 +18,12 @@ vector<Position> Walkway::energyBalls;
 vector<Position> Walkway::coinDisks;
 
 void Walkway::draw() {
-	if(walkwayList != 0) {
-		glPushMatrix();
-		glCallList(walkwayList);
-		glPopMatrix();
-	} else {
+	if(walkwayList == 0) {
 		walkwayList = glGenLists(1);
 		cerr << "New list!" << endl;
 
 		glNewList(walkwayList, GL_COMPILE);
 		glPushMatrix();
-
 		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
 			for (int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
 				Cube::draw(x, -10, z);

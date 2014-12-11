@@ -7,7 +7,9 @@
 
 #include "Animator.h"
 
-void Animator::animate(int value) {
+void Animator::animate(int val) {
+	if(GameManager::getState() == GameManager::STATE_RUNNING)
+		glutTimerFunc(16, animate, 16);
 
 	Character::moveForward(0.5);
 
@@ -28,7 +30,5 @@ void Animator::animate(int value) {
 
 	GameManager::dissipateEnergy();
 
-	if(GameManager::getState() == GameManager::STATE_RUNNING)
-		glutTimerFunc(16, animate, 16);
 	glutPostRedisplay();
 }

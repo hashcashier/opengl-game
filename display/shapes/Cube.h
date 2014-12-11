@@ -10,6 +10,8 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../opengl/TextureLoader.h"
+#include "../../opengl/BMPTextureLoader.h"
+
 
 using namespace std;
 

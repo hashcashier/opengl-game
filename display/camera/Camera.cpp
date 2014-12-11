@@ -22,10 +22,6 @@ void Camera::setupCamera() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-//	gluLookAt(	0,0,0,
-//				0,0,1,
-//				0,1,0);
-
 	GLfloat lookAtZ = Character::getZ() - 30;
 
 	gluLookAt(	0,0,lookAtZ,
@@ -62,10 +58,12 @@ void Camera::exit2DOverlay() {
 
 
 void Camera::displayText(int x, int y, string text, int r, int g, int b) {
+	glPushMatrix();
     glColor3d(r, g, b);
     glRasterPos2i(x, y);
     void *font = GLUT_BITMAP_HELVETICA_18;
     for(int i = 0; i < text.length(); i++){
         glutBitmapCharacter(font, text[i]);
     }
+    glPopMatrix();
 }

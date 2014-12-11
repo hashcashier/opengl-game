@@ -18,20 +18,20 @@ int main(int argc, char** argv)
 	glutInitWindowSize(800,600);
 	glutInitWindowPosition(200, 150);
 	glutCreateWindow("Luminosity");
+
 	glutDisplayFunc(Display::displayFunction);
 	glutKeyboardFunc(Keyboard::keyboardFunction);
 	glutSpecialFunc(Keyboard::keystrokeFunction);
 
-//	glShadeModel(GL_SMOOTH);
+	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_TEXTURE_2D);
 
 	Display::clear();
 
 	Light::enableLighting();
-//	Light::killAll();
+	Light::killAll();
 
 	glutMainLoop();
 }

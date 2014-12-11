@@ -15,7 +15,7 @@
 
 class Animator {
 public:
-	static void animate(int value);
+	static void animate(int val);
 };
 
 #endif /* ANIMATOR_H_ */

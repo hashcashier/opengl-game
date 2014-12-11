@@ -25,6 +25,35 @@ void Cube::color(int c) {
 }
 
 void Cube::draw(int x, int y, int z){
+//	return;
+	static GLuint texture = BMPTextureLoader::loadTexture("box.bmp");
+
+	glPushMatrix();
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glBegin(GL_QUADS);
+	// Top Face
+	//glNormal3f( 0.0f, 1.0f, 0.0f);
+	float v = 0.5f;
+	glNormal3f( 0.0f, 1.0f, 0.0f);
+//	glColor3f(1, 1, 1);
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex3f(x - 0.5 - v,  y + 1.0f, z - 1.5 - v);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(x - 0.5 - v,  y + 1.0f, z - 1.5  + v);
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex3f(x - 0.5 + v,  y + 1.0f, z - 1.5 + v);
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex3f(x - 0.5 + v,  y + 1.0f, z - 1.5 - v);
+	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
+
+	return;
+
+	glPushMatrix();
 	if(z%2==0)
 		if(x%2==0)
 			color(1);
@@ -35,7 +64,6 @@ void Cube::draw(int x, int y, int z){
 			color(3);
 		else
 			color(0);
-	glPushMatrix();
 	glTranslated(x,y,z);
 	glutSolidCube(1);
 	glPopMatrix();

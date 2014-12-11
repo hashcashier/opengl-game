@@ -9,6 +9,7 @@
 
 void Display::displayFunction() {
 	static Spotlight spotlight = Spotlight();
+	glLoadIdentity();
 	Camera::setupCamera();
 
 	GLfloat pos[] = {Character::getX(), Character::getY()+10, Character::getZ()-50, 1};
@@ -20,9 +21,12 @@ void Display::displayFunction() {
 	if(!spotlight.isEnabled())
 		spotlight.enable();
 
-	Walkway::draw();
+	glColor3f(1, 1, 1);
 
-	Character::draw();
+
+	if(GameManager::getState() != GameManager::STATE_STOPPED)
+		Walkway::draw(),
+		Character::draw();
 
 	HUD::draw();
 	glFlush();
