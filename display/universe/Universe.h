@@ -10,6 +10,8 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../opengl/textures/PNGTextureLoader.h"
+#include "Planet.h"
+#include "../../game/walkway/walkway.h"
 using namespace std;
 
 class Universe {

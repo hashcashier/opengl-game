@@ -23,9 +23,10 @@ void Camera::setupCamera() {
 	glLoadIdentity();
 
 	GLfloat lookAtZ = Character::getZ() - 30;
+	GLfloat lookAtX = Character::getX();
 
 	gluLookAt(	0,0,lookAtZ,
-				0,0,lookAtZ+1,
+				0,-2,lookAtZ+30,
 				0,1,0);
 
 	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);

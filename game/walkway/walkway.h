@@ -11,6 +11,7 @@
 #include "../../platformIndependentHeader.h"
 #include "../../display/shapes/Cube.h"
 #include "../../opengl/textures/TextureLoader.h"
+#include "../../opengl/textures/PNGTextureLoader.h"
 #include "../../display/shapes/Position.h"
 #include "EnergyBall.h"
 #include "Coin.h"
@@ -28,6 +29,7 @@ bool hasObstacle(int x, int z);
 class Walkway {
 	static GLuint walkwayList;
 	static vector<Position> energyBalls;
+	static vector<EnergyBall> energyBallsObj;
 	static vector<Position> coinDisks;
 	static bool nearObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
 	static int nearestObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
@@ -42,7 +44,8 @@ public:
 	static void reset();
 	static void removeBall(int i);
 	static void removeCoin(int i);
-	static void removeObject(int i, vector<Position> &objects);
+	template<typename T>
+	static void removeObject(int i, vector<T> &objects);
 };
 
 

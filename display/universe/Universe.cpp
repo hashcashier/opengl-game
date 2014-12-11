@@ -8,35 +8,26 @@
 #include "Universe.h"
 
 void Universe::draw() {
-	static GLuint texture = PNGTextureLoader::loadTexture("space.png");
-	static GLuint list = 0;
-	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_COLOR_MATERIAL);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	if(!list) {
-		glPushMatrix();
-
-		GLUquadricObj *sphere= gluNewQuadric();
-		gluQuadricDrawStyle(sphere, GLU_FILL);
-		gluQuadricTexture(sphere, true);
-		gluQuadricNormals(sphere, GLU_SMOOTH);
-
-		list = glGenLists(1);
-		glNewList(list, GL_COMPILE);
-//		glRotated(90,1,0,0);
-		gluSphere(sphere, 15000, 2000, 2000);
-		glEndList();
-		gluDeleteQuadric(sphere);
-
-		glPopMatrix();
-	} else {
-		glCallList(list);
+	static GLuint decorTexture = PNGTextureLoader::loadTexture("bluespace.png");
+	static Planet skysphere = Planet(0, 0, 0, 1500, PNGTextureLoader::loadTexture("bluespace.png"));
+	skysphere.draw();
+	static vector<Planet> decor;
+	if(decor.size() == 0) {
+		for(int z = 0; z < Walkway::HIGH_LIMIT; z+= 50) {
+			int random = rand();
+//			int x = (random%2)*(Walkway::LEFT_LIMIT - 4) + ((random+1)%2)*(Walkway::RIGHT_LIMIT + 4);
+			decor.push_back(Planet(Walkway::LEFT_LIMIT - 6, (random%100)*(-9.0/100), z, 5, decorTexture ));
+			decor.push_back(Planet(Walkway::RIGHT_LIMIT + 6, (random%100)*(-9.0/100), z, 5, decorTexture ));
+		}
 	}
 
-	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_LIGHTING);
-	glDisable(GL_TEXTURE_2D);
+	for(int i = 0; i < decor.size(); i++)
+		decor[i].draw();
+
+	static int var = Walkway::HIGH_LIMIT;
+	static Planet end = Planet(0, 0, (GLfloat) var, 15, PNGTextureLoader::loadTexture("shroud.png"));
+	end.draw();
+
+	return;
+
 }

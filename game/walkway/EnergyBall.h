@@ -10,12 +10,18 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../display/shapes/Position.h"
+#include "../../opengl/textures/PNGTextureLoader.h"
+#include "../../display/universe/Planet.h"
 
 using namespace std;
 
 class EnergyBall {
+	GLfloat x, y, z, s;
+	Planet planet;
 public:
-	static void draw(GLfloat x, GLfloat y, GLfloat z, GLfloat s);
+	EnergyBall(GLfloat x, GLfloat y, GLfloat z, GLfloat s);
+	void draw();
+	static GLuint texture;
 };
 
 #endif /* ENERGYBALL_H_ */

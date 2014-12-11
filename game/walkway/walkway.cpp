@@ -15,10 +15,12 @@ const int Walkway::HIGH_LIMIT = 240;
 GLuint grassTexture;
 GLuint Walkway::walkwayList = 0;
 vector<Position> Walkway::energyBalls;
+vector<EnergyBall> Walkway::energyBallsObj;
 vector<Position> Walkway::coinDisks;
 
 void Walkway::draw() {
-	static GLuint texture = BMPTextureLoader::loadTexture("box.bmp");
+//	static GLuint texture = BMPTextureLoader::loadTexture("box.bmp");
+	static GLuint texture = PNGTextureLoader::loadTexture("space.png");
 	if(walkwayList == 0) {
 		walkwayList = glGenLists(1);
 		cerr << "New list!" << endl;
@@ -26,27 +28,41 @@ void Walkway::draw() {
 		glNewList(walkwayList, GL_COMPILE);
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
+
 		glColor3f(1.0f, 1.0f, 1.0f);
+
+		glColor3ub(50, 50, 100);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
-			for (int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
-				Cube::draw(x, -10, z);
-		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
-			for (int y = -9; y < 0; y++)
-				Cube::draw(x, y, 240);
-		for (int y = 0; y < Walkway::RIGHT_LIMIT; y++)
-			for (int x = y - 11; x + y < 12; x++)
-				Cube::draw(x, y, 240);
+
+		glBegin(GL_QUADS);
+		glNormal3f(0.0f, 1.0f, 0.0f);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(LEFT_LIMIT-5,  -10, HIGH_LIMIT+10);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(LEFT_LIMIT-5,  -10, LOW_LIMIT-10);
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(RIGHT_LIMIT+5,  -10, LOW_LIMIT-10);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(RIGHT_LIMIT+5,  -10, HIGH_LIMIT+10);
+
+		glEnd();
+		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 		glEndList();
+	}
+
+	if(EnergyBall::texture == 0) {
+		EnergyBall::texture = PNGTextureLoader::loadTexture("goldspace.png");
 	}
 
 	if(energyBalls.size() == 0) {
 		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
 			for(int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++) {
 				if(rand()%500 == 0)
-					energyBalls.push_back(Position(x, -9, z));
+					energyBalls.push_back(Position(x, -9, z)),
+					energyBallsObj.push_back(EnergyBall(x, -9, z, 0.5));
 			}
 	if(coinDisks.size() == 0)
 		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
@@ -56,12 +72,10 @@ void Walkway::draw() {
 			}
 	}
 
-	glPushMatrix();
 	glCallList(walkwayList);
-	glPopMatrix();
 
 	for(int i = 0; i < energyBalls.size(); i++)
-		EnergyBall::draw(energyBalls[i].x, energyBalls[i].y, energyBalls[i].z, 1);
+		energyBallsObj[i].draw();
 	for(int i = 0; i < coinDisks.size(); i++)
 		Coin::draw(coinDisks[i].x, coinDisks[i].y, coinDisks[i].z, 1);
 	return;
@@ -111,11 +125,13 @@ int Walkway::nearestCoin(GLfloat x, GLfloat y, GLfloat z) {
 void Walkway::reset() {
 	walkwayList = 0;
 	energyBalls.clear();
+	energyBallsObj.clear();
 	coinDisks.clear();
 }
 
-void Walkway::removeObject(int i, vector<Position> &objects) {
-	for(vector<Position>::iterator it = objects.begin(); it != objects.end(); it++, i--)
+template<typename T>
+void Walkway::removeObject(int i, vector<T> &objects) {
+	for(typename vector<T>::iterator it = objects.begin(); it != objects.end(); it++, i--)
 		if(!i) {
 			objects.erase(it);
 			break;
@@ -124,8 +140,10 @@ void Walkway::removeObject(int i, vector<Position> &objects) {
 
 void Walkway::removeBall(int i) {
 	removeObject(i, energyBalls);
+	removeObject(i, energyBallsObj);
 }
 
 void Walkway::removeCoin(int i) {
 	removeObject(i, coinDisks);
+//	removeObject(i, coinDisksObj);
 }

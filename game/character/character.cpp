@@ -32,7 +32,7 @@ void Character::draw() {
 	glPushMatrix();
 
 	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_LIGHTING);
+//	glDisable(GL_LIGHTING);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -41,7 +41,7 @@ void Character::draw() {
 	plane.drawList(x, y, z);
 
 	glDisable(GL_TEXTURE_2D);
-	glEnable(GL_LIGHTING);
+//	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
 	return;

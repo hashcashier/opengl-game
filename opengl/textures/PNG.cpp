@@ -15,8 +15,9 @@ PNG::PNG(string fileName) {
 		std::cout << "PNG Decoder Error " << error << ": "
 				<< lodepng_error_text(error) << endl;
 	image = new unsigned char[temp.size()];
-//	for(int i = 0; i < temp.size(); i++)
-//		image[i] = temp[i];
+//	for(int i = (temp.size()/4)-1, k = 0; i >= 0; i--, k++)
+//		for(int j = 0; j < 4; j++)
+//		image[4*k + j] = temp[4*i + j];
 	memcpy(image, &temp[0], temp.size());
 }
 

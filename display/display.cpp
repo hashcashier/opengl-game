@@ -12,12 +12,16 @@ void Display::displayFunction() {
 	glLoadIdentity();
 	Camera::setupCamera();
 
-	Universe::draw();
+	if(GameManager::getState() != GameManager::STATE_STOPPED)
+		Universe::draw();
+
 
 	GLfloat pos[] = {Character::getX(), Character::getY()+10, Character::getZ()-50, 1};
 //	GLfloat pos[] = {Character::getX(), Character::getY()+1, Character::getZ(), 1};
+//	GLfloat pos[] = {Character::getX(), Character::getY()+1, Character::getZ()-10, 1};
 	spotlight.setPosition(pos);
 	GLfloat dir[] = {0, -1, 5, 1};
+//	GLfloat dir[] = {0, 0, 1, 1};
 //	GLfloat dir[] = {0, 0, 1, 1};
 	spotlight.setDirection(dir);
 	spotlight.setIntensity(GameManager::getEnergy()/30.0);
