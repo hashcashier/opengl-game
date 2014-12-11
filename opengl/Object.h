@@ -14,9 +14,13 @@ using namespace std;
 class Object {
 	vector<glm::vec3> vertices, normals;
 	vector<glm::vec2> uvs;
+	int object;
 public:
-	Object(string fileName);
+	GLdouble scaleX, scaleY, scaleZ;
+	Object(string fileName, GLdouble sx, GLdouble sy, GLdouble sz);
 	void draw();
+	int makeList();
+	void drawList();
 };
 
 #endif /* OBJECT_H_ */

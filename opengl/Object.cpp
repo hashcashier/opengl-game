@@ -7,8 +7,11 @@
 
 #include "Object.h"
 
-Object::Object(string fileName) {
-	// TODO Auto-generated constructor stub
+Object::Object(string fileName, GLdouble sx, GLdouble sy, GLdouble sz) {
+	scaleX = sx;
+	scaleY = sy;
+	scaleZ = sz;
+	object = 0;
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
 
 	std::vector< glm::vec3 > temp_vertices;
@@ -33,12 +36,10 @@ Object::Object(string fileName) {
 			file >> normal.x >> normal.y >> normal.z;
 			temp_normals.push_back(normal);
 		} else if(input == "f") {
-			std::string vertex1, vertex2, vertex3;
 			unsigned int vertexIndex[3], uvIndex[3], normalIndex[3], matches = 0;
 			for(int i = 0; i < 3; i++) {
-				string temp;
-				file >> temp;
-				matches += sscanf(temp.c_str(), "%d/%d/%d", &vertexIndex[i], &uvIndex[i], &normalIndex[i]);
+				file >> input;
+				matches += sscanf(input.c_str(), "%d/%d/%d", &vertexIndex[i], &uvIndex[i], &normalIndex[i]);
 			}
 			if (matches != 9) {
 				cerr << "Error in object file " + fileName << endl;
@@ -64,6 +65,8 @@ void Object::draw() {
 	} else if(vertices.size()%3 != 0) {
 		cerr << "Malformed object loaded." << endl;
 	} else {
+		glPushMatrix();
+		glScaled(scaleX, scaleY, scaleZ);
 		glBegin(GL_TRIANGLES);
 		for(int i = 0; i < (int)vertices.size(); i++) {
 			glNormal3f(normals[i].x, normals[i].y, normals[i].z);
@@ -71,6 +74,21 @@ void Object::draw() {
 			glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
 		}
 		glEnd();
+		glPopMatrix();
 	}
 //	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+}
+
+int Object::makeList() {
+	if(object)
+		return object;
+	object = glGenLists(1);
+	glNewList(object, GL_COMPILE);
+	draw();
+	glEndList();
+	return object;
+}
+
+void Object::drawList() {
+	glCallList(object);
 }

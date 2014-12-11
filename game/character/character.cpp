@@ -25,6 +25,19 @@ void Character::setRotation(float rot) {
 }
 
 void Character::draw() {
+	static Object plane("ARC170_2.obj", 0.001, 0.001, 0.005);
+	glColor3f(1, 1, 1);
+	plane.makeList();
+	glTranslated(x,y,z);
+	plane.drawList();
+	return;
+
+	glPushMatrix();
+	glColor3f(1, 1, 1);
+	plane.draw();
+	glPopMatrix();
+
+	return;
 	if(!hasObjectId())
 		setObjectId(ObjectLoader::loadObject("al.obj"));
 

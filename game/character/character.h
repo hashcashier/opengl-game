@@ -11,6 +11,7 @@
 #include "../../platformIndependentHeader.h"
 #include "../../opengl/ObjectLoader.h"
 #include "../walkway/walkway.h"
+#include "../../opengl/Object.h"
 
 using namespace std;
 
