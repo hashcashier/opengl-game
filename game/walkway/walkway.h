@@ -10,7 +10,7 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../display/shapes/Cube.h"
-#include "../../opengl/TextureLoader.h"
+#include "../../opengl/textures/TextureLoader.h"
 #include "../../display/shapes/Position.h"
 #include "EnergyBall.h"
 #include "Coin.h"

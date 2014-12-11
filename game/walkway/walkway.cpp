@@ -18,12 +18,16 @@ vector<Position> Walkway::energyBalls;
 vector<Position> Walkway::coinDisks;
 
 void Walkway::draw() {
+	static GLuint texture = BMPTextureLoader::loadTexture("box.bmp");
 	if(walkwayList == 0) {
 		walkwayList = glGenLists(1);
 		cerr << "New list!" << endl;
 
 		glNewList(walkwayList, GL_COMPILE);
 		glPushMatrix();
+		glEnable(GL_TEXTURE_2D);
+		glColor3f(1.0f, 1.0f, 1.0f);
+		glBindTexture(GL_TEXTURE_2D, texture);
 		for (int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++)
 			for (int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
 				Cube::draw(x, -10, z);
@@ -33,7 +37,7 @@ void Walkway::draw() {
 		for (int y = 0; y < Walkway::RIGHT_LIMIT; y++)
 			for (int x = y - 11; x + y < 12; x++)
 				Cube::draw(x, y, 240);
-
+		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 		glEndList();
 	}

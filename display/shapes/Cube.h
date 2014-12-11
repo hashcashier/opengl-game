@@ -9,8 +9,8 @@
 #define CUBE_H_
 
 #include "../../platformIndependentHeader.h"
-#include "../../opengl/TextureLoader.h"
-#include "../../opengl/BMPTextureLoader.h"
+#include "../../opengl/textures/TextureLoader.h"
+#include "../../opengl/textures/BMPTextureLoader.h"
 
 
 using namespace std;

@@ -5,7 +5,7 @@
  *      Author: rami
  */
 
-#include "../platformIndependentHeader.h"
+#include "../../platformIndependentHeader.h"
 using namespace std;
 
 #ifndef OBJECTLOADER_H_

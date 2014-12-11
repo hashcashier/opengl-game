@@ -8,7 +8,7 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
-#include "../platformIndependentHeader.h"
+#include "../../platformIndependentHeader.h"
 using namespace std;
 
 class Object {
@@ -17,10 +17,11 @@ class Object {
 	int object;
 public:
 	GLdouble scaleX, scaleY, scaleZ;
+	GLdouble rotX, rotY, rotZ;
 	Object(string fileName, GLdouble sx, GLdouble sy, GLdouble sz);
 	void draw();
 	int makeList();
-	void drawList();
+	void drawList(GLfloat x, GLfloat y, GLfloat z);
 };
 
 #endif /* OBJECT_H_ */

@@ -26,18 +26,26 @@ void Character::setRotation(float rot) {
 
 void Character::draw() {
 	static Object plane("ARC170_2.obj", 0.001, 0.001, 0.005);
-	glColor3f(1, 1, 1);
-	plane.makeList();
-	glTranslated(x,y,z);
-	plane.drawList();
-	return;
+	static GLuint texture = PNGTextureLoader::loadTexture("ARC170_2.png");
+	plane.rotY = 180;
 
 	glPushMatrix();
+
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHTING);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
 	glColor3f(1, 1, 1);
-	plane.draw();
+	plane.makeList();
+	plane.drawList(x, y, z);
+
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
 	return;
+
 	if(!hasObjectId())
 		setObjectId(ObjectLoader::loadObject("al.obj"));
 

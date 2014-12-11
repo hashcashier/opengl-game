@@ -11,6 +11,7 @@ Object::Object(string fileName, GLdouble sx, GLdouble sy, GLdouble sz) {
 	scaleX = sx;
 	scaleY = sy;
 	scaleZ = sz;
+	rotX = rotY = rotZ = 0;
 	object = 0;
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
 
@@ -89,6 +90,12 @@ int Object::makeList() {
 	return object;
 }
 
-void Object::drawList() {
+void Object::drawList(GLfloat x, GLfloat y, GLfloat z) {
+	glPushMatrix();
+	glTranslated(x, y, z);
+	glRotated(rotX,1,0,0);
+	glRotated(rotY,0,1,0);
+	glRotated(rotZ,0,0,1);
 	glCallList(object);
+	glPopMatrix();
 }

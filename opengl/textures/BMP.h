@@ -8,8 +8,8 @@
 #ifndef BMP_H_
 #define BMP_H_
 
-#include "../platformIndependentHeader.h"
-#include "../external/bitmap_image.hpp"
+#include "../../platformIndependentHeader.h"
+#include "../../external/bitmap_image.hpp"
 
 using namespace std;
 

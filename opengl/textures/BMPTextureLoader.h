@@ -8,7 +8,7 @@
 #ifndef BMPTEXTURELOADER_H_
 #define BMPTEXTURELOADER_H_
 
-#include "../platformIndependentHeader.h"
+#include "../../platformIndependentHeader.h"
 #include "BMP.h"
 using namespace std;
 

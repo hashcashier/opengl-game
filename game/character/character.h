@@ -9,9 +9,10 @@
 #define CHARACTER_H_
 
 #include "../../platformIndependentHeader.h"
-#include "../../opengl/ObjectLoader.h"
+#include "../../opengl/objects/ObjectLoader.h"
 #include "../walkway/walkway.h"
-#include "../../opengl/Object.h"
+#include "../../opengl/objects/Object.h"
+#include "../../opengl/textures/PNGTextureLoader.h"
 
 using namespace std;
 

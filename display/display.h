@@ -12,13 +12,12 @@
 #include "../game/character/character.h"
 #include "camera/Camera.h"
 #include "HUD.h"
-#include "../opengl/ObjectLoader.h"
+#include "../opengl/objects/ObjectLoader.h"
 #include "light/Spotlight.h"
+#include "light/Light.h"
+#include "universe/Universe.h"
 
 using namespace std;
-
-extern void drawWalkway();
-extern void drawEndWall();
 
 class Display {
 public:
