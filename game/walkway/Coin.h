@@ -10,11 +10,17 @@
 
 #include "../../platformIndependentHeader.h"
 #include "../../display/shapes/Position.h"
+#include "../../display/universe/Planet.h"
 using namespace std;
 
 class Coin {
+	GLfloat x, y, z, s;
+	Planet planet;
 public:
-	static void draw(GLfloat x, GLfloat y, GLfloat z, GLfloat s);
+//	static void draw(GLfloat x, GLfloat y, GLfloat z, GLfloat s);
+	Coin(GLfloat x, GLfloat y, GLfloat z, GLfloat s);
+	void draw();
+	static GLuint texture;
 };
 
 #endif /* COIN_H_ */

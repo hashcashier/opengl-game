@@ -37,7 +37,8 @@ void Display::displayFunction() {
 		Character::draw();
 
 	HUD::draw();
-	glFlush();
+//	glFlush();
+	glutSwapBuffers();
 }
 
 void Display::clear() {

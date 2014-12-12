@@ -17,6 +17,7 @@ GLuint Walkway::walkwayList = 0;
 vector<Position> Walkway::energyBalls;
 vector<EnergyBall> Walkway::energyBallsObj;
 vector<Position> Walkway::coinDisks;
+vector<Coin> Walkway::coinDisksObj;
 
 void Walkway::draw() {
 //	static GLuint texture = BMPTextureLoader::loadTexture("box.bmp");
@@ -56,6 +57,9 @@ void Walkway::draw() {
 	if(EnergyBall::texture == 0) {
 		EnergyBall::texture = PNGTextureLoader::loadTexture("whitespace.png");
 	}
+	if(Coin::texture == 0) {
+		Coin::texture = PNGTextureLoader::loadTexture("goldspace.png");
+	}
 
 	if(energyBalls.size() == 0) {
 		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
@@ -68,7 +72,8 @@ void Walkway::draw() {
 		for(int z = Walkway::LOW_LIMIT; z < Walkway::HIGH_LIMIT; z++)
 			for(int x = Walkway::LEFT_LIMIT; x < Walkway::RIGHT_LIMIT; x++) {
 				if(rand()%200 == 0)
-					coinDisks.push_back(Position(x, -9, z));
+					coinDisks.push_back(Position(x, -9, z)),
+					coinDisksObj.push_back(Coin(x, -9, z, 0.7));
 			}
 	}
 
@@ -78,7 +83,7 @@ void Walkway::draw() {
 		energyBallsObj[i].draw();
 	glColor3f(1.0f, 1.0f, 1.0f);
 	for(int i = 0; i < coinDisks.size(); i++)
-		Coin::draw(coinDisks[i].x, coinDisks[i].y, coinDisks[i].z, 1);
+		coinDisksObj[i].draw();
 	return;
 }
 
@@ -128,6 +133,7 @@ void Walkway::reset() {
 	energyBalls.clear();
 	energyBallsObj.clear();
 	coinDisks.clear();
+	coinDisksObj.clear();
 }
 
 template<typename T>
@@ -146,5 +152,5 @@ void Walkway::removeBall(int i) {
 
 void Walkway::removeCoin(int i) {
 	removeObject(i, coinDisks);
-//	removeObject(i, coinDisksObj);
+	removeObject(i, coinDisksObj);
 }

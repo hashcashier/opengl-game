@@ -31,6 +31,7 @@ class Walkway {
 	static vector<Position> energyBalls;
 	static vector<EnergyBall> energyBallsObj;
 	static vector<Position> coinDisks;
+	static vector<Coin> coinDisksObj;
 	static bool nearObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
 	static int nearestObject(GLfloat x, GLfloat y, GLfloat z, vector<Position> &objects);
 public:
