@@ -24,7 +24,7 @@ void GameManager::startGame() {
 	if(GAME_STATE == STATE_OVER || GAME_STATE == STATE_STOPPED)
 		PLAYER_SCORE = GAME_ROUND = 0;
 	GAME_ROUND++;
-	PLAYER_ENERGY = 200;
+	PLAYER_ENERGY = 400;
 	GAME_STATE = STATE_RUNNING;
 	Character::resetPosition();
 	Walkway::reset();

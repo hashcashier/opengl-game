@@ -29,7 +29,6 @@ void Planet::draw() {
 		glEnable(GL_TEXTURE_2D);
 		if(!light)
 			glDisable(GL_LIGHTING);
-		glDisable(GL_COLOR_MATERIAL);
 //		glColor3f(1.0f, 1.0f, 1.0f);
 		glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -39,10 +38,9 @@ void Planet::draw() {
 		gluQuadricNormals(sphere, GLU_SMOOTH);
 //		glRotated(90,1,0,0);
 		glTranslated(x, y, z);
-		gluSphere(sphere, r, 20000, 20000);
+		gluSphere(sphere, r, 20, 20);
 		gluDeleteQuadric(sphere);
 
-		glEnable(GL_COLOR_MATERIAL);
 		if(!light)
 			glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);

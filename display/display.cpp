@@ -24,7 +24,7 @@ void Display::displayFunction() {
 //	GLfloat dir[] = {0, 0, 1, 1};
 //	GLfloat dir[] = {0, 0, 1, 1};
 	spotlight.setDirection(dir);
-	spotlight.setIntensity(GameManager::getEnergy()/30.0);
+	spotlight.setIntensity(GameManager::getEnergy()/60.0);
 
 	if(!spotlight.isEnabled())
 		spotlight.enable();

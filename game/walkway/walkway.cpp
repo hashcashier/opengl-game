@@ -78,6 +78,7 @@ void Walkway::draw() {
 	}
 
 	glCallList(walkwayList);
+
 	glColor3ub(254, 254, 254);
 	for(int i = 0; i < energyBalls.size(); i++)
 		energyBallsObj[i].draw();
