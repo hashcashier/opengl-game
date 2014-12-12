@@ -90,6 +90,10 @@ void Character::resetPosition() {
 }
 
 void Character::moveForward(GLfloat value) {
+	static GLfloat d = 0.05;
+	if(fabs(y-iY) > 0.3)
+		d = -d;
+	y += d;
 	z += value;
 }
 

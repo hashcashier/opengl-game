@@ -19,7 +19,8 @@ Spotlight::Spotlight() {
 
 void Spotlight::enable() {
 	float lightAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	glLightfv(Light::getLight(number), GL_AMBIENT, lightAmbient);	//Setup The Ambient Light
+	float spotlightAmbient[] = { 0.0f, 0.0f, 1.0f, 1.0f };
+	glLightfv(Light::getLight(number), GL_AMBIENT, spotlightAmbient);	//Setup The Ambient Light
 
 	glLightf(Light::getLight(number), GL_SPOT_EXPONENT, 0);
 

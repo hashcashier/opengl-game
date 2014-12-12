@@ -30,7 +30,7 @@ void Planet::draw() {
 		if(!light)
 			glDisable(GL_LIGHTING);
 		glDisable(GL_COLOR_MATERIAL);
-		glColor3f(1.0f, 1.0f, 1.0f);
+//		glColor3f(1.0f, 1.0f, 1.0f);
 		glBindTexture(GL_TEXTURE_2D, texture);
 
 		GLUquadricObj *sphere= gluNewQuadric();

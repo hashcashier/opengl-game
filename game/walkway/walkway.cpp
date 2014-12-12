@@ -54,7 +54,7 @@ void Walkway::draw() {
 	}
 
 	if(EnergyBall::texture == 0) {
-		EnergyBall::texture = PNGTextureLoader::loadTexture("goldspace.png");
+		EnergyBall::texture = PNGTextureLoader::loadTexture("whitespace.png");
 	}
 
 	if(energyBalls.size() == 0) {
@@ -73,9 +73,10 @@ void Walkway::draw() {
 	}
 
 	glCallList(walkwayList);
-
+	glColor3ub(254, 254, 254);
 	for(int i = 0; i < energyBalls.size(); i++)
 		energyBallsObj[i].draw();
+	glColor3f(1.0f, 1.0f, 1.0f);
 	for(int i = 0; i < coinDisks.size(); i++)
 		Coin::draw(coinDisks[i].x, coinDisks[i].y, coinDisks[i].z, 1);
 	return;
