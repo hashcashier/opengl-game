@@ -21,6 +21,9 @@ class Character {
 	static float rotation;
 	static GLfloat x, y, z;
 	static const GLfloat iX, iY, iZ;
+	static const int STATE_MOVING_LEFT, STATE_MOVING_RIGHT;
+	static int STATE, STATE_TICKS, STATE_TICKS_LIMIT;
+	static GLfloat STATE_VALUE;
 public:
 	static bool hasObjectId();
 	static void setObjectId(GLuint objectId);

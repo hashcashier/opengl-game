@@ -11,6 +11,9 @@ GLuint Character::object = 0;
 float Character::rotation = 0;
 const GLfloat Character::iX = 0, Character::iY = -9, Character::iZ = 20;
 GLfloat Character::x = iX, Character::y = iY, Character::z = iZ;
+const int Character::STATE_MOVING_LEFT = 1, Character::STATE_MOVING_RIGHT = 2;
+int Character::STATE = 0, Character::STATE_TICKS = 0, Character::STATE_TICKS_LIMIT = 0;
+GLfloat Character::STATE_VALUE = 0;
 
 bool Character::hasObjectId() {
 	return object != 0;
@@ -30,6 +33,21 @@ void Character::draw() {
 	plane.rotY = 180;
 
 	glPushMatrix();
+
+	if(STATE) {
+		if(STATE_TICKS == STATE_TICKS_LIMIT) {
+			STATE = 0;
+			STATE_TICKS = 0;
+		} else if(STATE == STATE_MOVING_LEFT) {
+			STATE_TICKS++;
+			x += STATE_VALUE/10;
+			plane.rotZ = STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
+		} else if(STATE == STATE_MOVING_RIGHT) {
+			STATE_TICKS++;
+			x -= STATE_VALUE/10;
+			plane.rotZ = -STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
+		}
+	}
 
 	glEnable(GL_TEXTURE_2D);
 //	glDisable(GL_LIGHTING);
@@ -98,11 +116,23 @@ void Character::moveForward(GLfloat value) {
 }
 
 void Character::moveLeft(GLfloat value) {
-	if(x + value < Walkway::RIGHT_LIMIT)
-		x += value;
+	if(!STATE && x + value < Walkway::RIGHT_LIMIT) {
+		STATE = STATE_MOVING_LEFT;
+		STATE_TICKS_LIMIT = 10;
+		STATE_VALUE = value;
+	}
+
+//	if(x + value < Walkway::RIGHT_LIMIT)
+//		x += value;
 }
 
 void Character::moveRight(GLfloat value) {
-	if(x - value >= Walkway::LEFT_LIMIT)
-		x -= value;
+	if(!STATE && x - value >= Walkway::LEFT_LIMIT) {
+		STATE = STATE_MOVING_RIGHT;
+		STATE_TICKS_LIMIT = 10;
+		STATE_VALUE = value;
+	}
+
+//	if(x - value >= Walkway::LEFT_LIMIT)
+//		x -= value;
 }
