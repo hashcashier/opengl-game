@@ -38,14 +38,17 @@ void Character::draw() {
 		if(STATE_TICKS == STATE_TICKS_LIMIT) {
 			STATE = 0;
 			STATE_TICKS = 0;
+			plane.rotZ = 0;
 		} else if(STATE == STATE_MOVING_LEFT) {
 			STATE_TICKS++;
 			x += STATE_VALUE/10;
-			plane.rotZ = STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
+//			plane.rotZ = STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
+			plane.rotZ = 60;
 		} else if(STATE == STATE_MOVING_RIGHT) {
 			STATE_TICKS++;
 			x -= STATE_VALUE/10;
-			plane.rotZ = -STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
+			plane.rotZ = -60;
+//			plane.rotZ = -STATE_TICKS*(360.0/STATE_TICKS_LIMIT);
 		}
 	}
 
@@ -116,7 +119,7 @@ void Character::moveForward(GLfloat value) {
 }
 
 void Character::moveLeft(GLfloat value) {
-	if(!STATE && x + value < Walkway::RIGHT_LIMIT) {
+	if(!STATE && x + value <= Walkway::RIGHT_LIMIT) {
 		STATE = STATE_MOVING_LEFT;
 		STATE_TICKS_LIMIT = 10;
 		STATE_VALUE = value;

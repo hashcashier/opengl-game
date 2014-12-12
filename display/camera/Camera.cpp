@@ -18,7 +18,7 @@ void Camera::setupCamera() {
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(45, 1, 0.01, 1000000);
+	gluPerspective(60, 1, 0.01, 1000000);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
