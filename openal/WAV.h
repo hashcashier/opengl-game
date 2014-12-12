@@ -18,7 +18,8 @@ using namespace std;
 
 class WAV {
 public:
-	WAV(string fileName);
+	static int play(string fileName);
+	static int play2(string fileName);
 };
 
 #endif /* WAV_H_ */

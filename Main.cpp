@@ -6,6 +6,7 @@
 #include "input/Keyboard.h"
 #include "display/display.h"
 #include "display/light/Light.h"
+#include "openal/WAV.h"
 
 using namespace std;
 
@@ -32,6 +33,8 @@ int main(int argc, char** argv)
 
 	Light::enableLighting();
 	Light::killAll();
+
+	WAV::play2("music.wav");
 
 	glutMainLoop();
 }
